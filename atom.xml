@@ -1,0 +1,1972 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://yangggshuyi.github.io</id>
+    <title>薅羊毛记录仪</title>
+    <updated>2021-03-16T14:31:58.622Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://yangggshuyi.github.io"/>
+    <link rel="self" href="https://yangggshuyi.github.io/atom.xml"/>
+    <subtitle>旧岁舍人如木落 新春予义再易风</subtitle>
+    <logo>https://yangggshuyi.github.io/images/avatar.png</logo>
+    <icon>https://yangggshuyi.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2021, 薅羊毛记录仪</rights>
+    <entry>
+        <title type="html"><![CDATA[腾讯数分面经问题汇总（更新中）]]></title>
+        <id>https://yangggshuyi.github.io/post/teng-xun-shu-fen-mian-jing-wen-ti-hui-zong-geng-xin-zhong/</id>
+        <link href="https://yangggshuyi.github.io/post/teng-xun-shu-fen-mian-jing-wen-ti-hui-zong-geng-xin-zhong/">
+        </link>
+        <updated>2021-03-16T14:24:47.000Z</updated>
+        <summary type="html"><![CDATA[<p>停止内耗，减少焦虑。。。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>停止内耗，减少焦虑。。。</p>
+<!-- more -->
+<h1 id="实习项目">实习&amp;项目</h1>
+<p>1.监控哪些指标？</p>
+<p>2.最重要的指标是那几个？</p>
+<p>3.如何做异动指标分析？</p>
+<p>4.模型构建了哪些特征？</p>
+<p>5.最后发现哪些特征比较有意义？</p>
+<p>6.数据处理问题：类不平衡怎么处理的？欠/过采样</p>
+<p>8.为什么GBDT精度比决策树高？</p>
+<h1 id="sql-python">sql &amp; python</h1>
+<ol>
+<li>
+<p>on作和where有什么区别？</p>
+</li>
+<li>
+<p>各种类型的join有什么区别</p>
+</li>
+<li>
+<p>where和having有什么区别？</p>
+</li>
+</ol>
+<p><a href="https://yangshuyi.xyz/post/sql-li-jie-lei-mian-shi-ti/">上面的回答在这里</a></p>
+<ol start="4">
+<li>
+<p>不用 distinct 语法怎么实现 去重功能？</p>
+<p>group by <strong>补充 distinct  和 group by 在去重时的区别</strong>：</p>
+<p>①distinct 是把内容存储在hash结构，然后把 key 拿出来，空间换取时间 ；</p>
+<p>② group by 是分组统计，时间换取空间；</p>
+<p>③数据越离散，DISTINCT 需要消耗的空间越大，效率也就越低。</p>
+</li>
+<li>
+<p>分布式问题</p>
+<p>有了解过hadoop么？<strong>数据倾斜</strong>时如何发生的？</p>
+<p>spark为啥比hive快？所有条件下都成立么？</p>
+<p>比较spark、hive、MySQL查询的区别</p>
+<p>分布式了解多少，做过的分布式或多线程相关的吗</p>
+</li>
+<li>
+<p>Python</p>
+<p>Python里一般用什么包</p>
+<p>pandas: value_counts/duplicated/dropna/shape/apply/<strong>df.groupby(by = 按某列分组).agg({&quot;列名&quot;:&quot;函数&quot;})</strong>/merge</p>
+<p>PyODPS: python执行sql任务读取数据</p>
+<p>...</p>
+</li>
+</ol>
+<h1 id="统计理论机器学习">统计理论&amp;机器学习</h1>
+<h2 id="ab实验">AB实验</h2>
+<pre><code>·    1为啥用t检验？知道哪些统计学检验？
+·    2如何理解p值
+·    3哪些指标？服从什么分布？为什么服从？
+·    4样本量怎么确定
+·    5实验对照组样本怎么选择
+·    6.维度爆炸怎么解决（正交/互斥）
+·    7.如果实际情况和实验结果不符，为什么？
+·    8.一般流程总结
+·    9.实验中遇到过什么困难，怎么解决的
+</code></pre>
+<ol>
+<li>
+<p>Z T 卡方 F检验</p>
+</li>
+<li>
+<p>出现样本观察结果或者更极端的概率</p>
+</li>
+<li>
+<p>指标包括 gmv 交易额 gaap 毛利额 ctr 点击率。每位用户周期内的 gmv 呈现右偏分布；原因是部分用户（比如大药店）的极端行为，如大金额订单，给实验的评价指标带来决定性的变化，所以有必要对异常用户的数据进行过滤。分布可以画直方图箱线图/看分位点/等距分箱算比例/分布检验</p>
+</li>
+<li>
+<p>显著性水平0.05，需要提升的gmv比例1% 利用区间估计里计算样本量的公式 —— 可用来计算实验周期数</p>
+</li>
+<li>
+<p>用户登录次序划分ABABAB...，从而分为AB两组作为实验组和对照组。注意必须保证一个用户仅处于一个组，需要处理同一用户拥有不同账号的问题（利用IP地址，设备等检测）</p>
+</li>
+<li>
+<p>实验和实验之间交叉，用户同时数据多个实验，要求实验和实验之间不会相互影响，可以缩小实验周期（我的简单分流不涉及到这里）</p>
+</li>
+<li>
+<p>①分流不均衡，需要进行有效性检验 AA test/ DID ②样本量问题不足以显著  ③新奇效应，可以只看新增用户 ④试验周期选择，考虑用户活跃间隔期（连续两次购买的时间间隔），以保证实验组用户都被策略触达</p>
+</li>
+<li>
+<p>确定实验目的-关键指标和辅助指标-确定样本量-时间周期-分流-有效性检验-开展试验-异常处理-检验-分析结果</p>
+</li>
+<li>
+<p>困难</p>
+<ul>
+<li>①同一用户的不同账号问题，包括连锁店问题，这些用户之间是相互联系的，可能导致实验组和对照组不独立，并且我们不希望他们看到不同的价格，涉及到分流的处理；</li>
+<li>②试验周期的选择，按照什么周期去加总，考虑连续两次购买的时间间隔，按照周来加总；</li>
+<li>③异常用户/大金额订单的过滤；</li>
+<li>④利用DID方法减少趋势性和周期性波动影响，即用试验后的数据-试验前的数据的差值作为数据。</li>
+</ul>
+</li>
+</ol>
+<h2 id="预处理">预处理</h2>
+<ol>
+<li>
+<p>偏态数据如何处理：变换/离散化/异常值筛选<a href="https://yangshuyi.xyz/post/di-er-ci-mian-shi-zong-jie/#5-%E5%81%8F%E6%80%81">之前写过</a></p>
+</li>
+<li>
+<p>缺失值如何处理：删除/插补/离散化/random生成 <a href="https://yangshuyi.xyz/post/di-er-ci-mian-shi-zong-jie/#1%E7%BC%BA%E5%A4%B1%E5%80%BC">之前写过</a></p>
+</li>
+</ol>
+<h2 id="机器学习">机器学习</h2>
+<p>MAE 和 RMSE 作为metric的应用场景是什么？</p>
+<p>知道哪些正则化？</p>
+<p>知道哪些损失函数？</p>
+<p>K-means聚类过程</p>
+<p>随机森林的随机性体现在？</p>
+<p>SVM的核函数的定义和作用？</p>
+<p>LR回归公式的推导</p>
+<p>LDA？</p>
+<p>向量间的相似性计算方法</p>
+<p>朴素贝叶斯?</p>
+<h1 id="业务分析">业务分析</h1>
+<h2 id="1评估某个改版">1.评估某个改版</h2>
+<p>有在微信内看过公众号文章么？微信订阅号改版，文章底部有相关文章推荐，你会怎么评估？</p>
+<p><strong>核心点：数据分析（转化率、核心指标的变动情况）+ A/B test</strong></p>
+<p>1、是推荐的效果。需要文章的曝光log，文章曝光后的点击log，简单计算转化率。</p>
+<p>2、是大盘阅读效果。需要有A/B test，对比无推荐/有推荐的用户，最终的阅读量是否有明显差异。需要有用户阅读文章的log。</p>
+<h2 id="2-常见模型">2. 常见模型</h2>
+<p>AARRR模型？ 获取-激活（活跃起来？）- 留存 - 转化收益 - 推荐传播</p>
+<figure data-type="image" tabindex="1"><img src="http://image.woshipm.com/wp-files/2021/01/DfJRcfxc4mpb0oUqJTT9.png" alt="img" loading="lazy"></figure>
+<h2 id="3-指标变动分析">3. 指标变动分析</h2>
+<p>3.1 微信支付某天的支付总量同比发生5%的下降，你会怎么查找原因？</p>
+<p><a href="https://yangshuyi.xyz/post/ye-wu-or-zhi-biao-yi-dong-wen-ti/">之前写过</a></p>
+<p>3.2 文章推荐转化率高，大盘阅读量没有提升或者有提升，你觉得原因是什么？</p>
+<p>指标拆解，阅读量来自：订阅公众号点击量+朋友圈或者群聊分享点击量+推荐点击量，如果推荐的转化率高，可能是用户减少了看订阅列表和朋友圈的文章，毕竟用户日常阅读时间有限。</p>
+<h2 id="4-费米问题">4. 费米问题</h2>
+<p>如何估计白天某个小时深圳空中有多少飞机？</p>
+<ul>
+<li>
+<p>假设深圳一千万，每天旅客流量大概10万，假设每架飞机载客100人，则每天机场起飞降落1000架飞机</p>
+</li>
+<li>
+<p>航班时间早6-晚10点（每天16个小时），假设飞机起飞或者降落在深圳停留半小时</p>
+</li>
+<li>
+<p>那么每个小时空中应该有 1000 * 0.5 / 16 架飞机</p>
+</li>
+</ul>
+<p><a href="https://yangshuyi.xyz/post/fei-mi-wen-ti/">之前写过</a></p>
+<h2 id="5-类似产品经理的app评价-分析类问题">5. 类似产品经理的app评价、分析类问题</h2>
+<p>有使用过短视频么**？从哪里可以获得抖音、快手、微信视频号的数据？怎么评价3者的竞争？**</p>
+<p>常用APP？如何优化？如何看结果？</p>
+<p>如何搭建核心指标</p>
+<h2 id="6数据分析了解-转行-书籍推荐等">6.数据分析了解、转行、书籍推荐等</h2>
+<p>有看什么<a href="https://www.nowcoder.com/jump/super-jump/word?word=%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90">数据分析</a>的书籍么？</p>
+<p>利用 python 进行数据分析 R语言可视化 ggplolt2 机器学习</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sql 力扣速成（下）]]></title>
+        <id>https://yangggshuyi.github.io/post/sql-li-kou-su-cheng-xia/</id>
+        <link href="https://yangggshuyi.github.io/post/sql-li-kou-su-cheng-xia/">
+        </link>
+        <updated>2021-03-16T08:06:11.000Z</updated>
+        <summary type="html"><![CDATA[<p>力扣 sql 中等&amp;困难完成打卡 ~ 简单题还剩一些有缘再看叭😗</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>力扣 sql 中等&amp;困难完成打卡 ~ 简单题还剩一些有缘再看叭😗</p>
+<!-- more -->
+<h1 id="困难">困难</h1>
+<h2 id="1384按年度列出销售总额">1384.按年度列出销售总额</h2>
+<p>每个产品<strong>每年的总销售额</strong>，并包含 product_id, product_name 以及 report_year total_amount</p>
+<p>销售年份的日期介于 2018 年到 2020 年之间。你返回的结果需要按 product_id 和 report_year 排序。</p>
+<pre><code class="language-sql">select tmp.product_id, product_name, report_year, average_daily_sales * days as total_amount
+from(
+    select product_id,
+    &quot;2018&quot; as report_year,
+    average_daily_sales,
+    (case when period_end &gt; &quot;2019-01-01&quot;  
+    then datediff(&quot;2019-01-01&quot;, period_start) 
+    else datediff(period_end, period_start)+1 end) as days
+from sales
+where period_start&lt;=&quot;2018-12-31&quot; 
+union all
+select  product_id,
+     &quot;2019&quot; as report_year,
+     average_daily_sales,
+     (case when period_end&gt;=&quot;2020-01-01&quot; and period_start&lt;&quot;2019-01-01&quot;
+     then  datediff(&quot;2020-01-01&quot;, &quot;2019-01-01&quot;) 
+     when period_end&gt;=&quot;2020-01-01&quot; and period_start&gt;&quot;2019-01-01&quot;
+     then  datediff(&quot;2020-01-01&quot;, period_start) 
+     when period_end&lt;&quot;2020-01-01&quot; and period_start&lt;&quot;2019-01-01&quot;
+     then  datediff(period_end, &quot;2018-12-31&quot;) 
+     when period_end&lt;&quot;2020-01-01&quot; and period_start&gt;&quot;2019-01-01&quot;
+     then datediff(period_end, period_start)+1
+     else 0 end 
+     ) as days
+from sales
+where period_start&lt;=&quot;2019-12-31&quot; and period_end&gt;=&quot;2019-01-01&quot;
+union all
+select  product_id,
+     &quot;2020&quot; as report_year,
+     average_daily_sales,
+     (
+         case when period_start&lt;&quot;2020-01-01&quot; 
+         then datediff(period_end, &quot;2019-12-31&quot;)
+         else datediff(period_end, period_start)+1 end
+     )as days
+from sales
+where period_end&gt;=&quot;2020-01-01&quot; 
+) tmp
+left join Product
+on tmp.product_id = Product.product_id
+order by tmp.product_id asc, report_year asc;
+</code></pre>
+<h2 id="1412-查找成绩处于中游的学生">1412. 查找成绩处于中游的学生</h2>
+<p>成绩处于中游的学生是指至少参加了一次测验, 且得分既不是最高分也不是最低分的学生。</p>
+<p>写一个 SQL 语句，找出在 所有 测验中都处于中游的学生 (student_id, student_name)。</p>
+<p>不要返回从来没有参加过测验的学生。返回结果表按照 student_id 排序。</p>
+<pre><code class="language-sql">with tmp as(
+    select exam_id, student_id,
+    rank() over(partition by exam_id order by score asc) rk1,
+    rank() over(partition by exam_id order by score desc) rk2
+    from Exam
+)
+
+select distinct tmp.student_id, student_name
+from tmp
+left join Student
+on tmp.student_id = Student.student_id
+where tmp.student_id not in (
+    select distinct student_id
+    from tmp
+    where rk1=1 or rk2=1
+)
+order by tmp.student_id
+</code></pre>
+<h2 id="1479周内每天的销售情况">1479.周内每天的销售情况</h2>
+<p>报告 周内每天 每个商品类别下订购了多少单位。返回结果表单 按商品类别排序</p>
+<pre><code class="language-sql">select item_category as Category,
+    sum(case when date_format(order_date,&quot;%W&quot;)=&quot;Monday&quot;then quantity else 0 end) as Monday,
+    sum(case when date_format(order_date,&quot;%W&quot;)=&quot;Tuesday&quot;then quantity else 0 end) as Tuesday,
+    sum(case when date_format(order_date,&quot;%W&quot;)=&quot;Wednesday&quot;then quantity else 0 end) as Wednesday,
+    sum(case when date_format(order_date,&quot;%W&quot;)=&quot;Thursday&quot;then quantity else 0 end) as Thursday,
+    sum(case when date_format(order_date,&quot;%W&quot;)=&quot;Friday&quot;then quantity else 0 end) as Friday,
+    sum(case when date_format(order_date,&quot;%W&quot;)=&quot;Saturday&quot;then quantity else 0 end) as Saturday,
+    sum(case when date_format(order_date,&quot;%W&quot;)=&quot;Sunday&quot;then quantity else 0 end) as Sunday
+from Orders
+right join Items
+on Orders.item_id = Items.item_id
+group by Category
+order by Category;
+</code></pre>
+<h1 id="中等">中等</h1>
+<h2 id="1440-计算布尔表达式的值">1440. 计算布尔表达式的值</h2>
+<p>以计算表 <code>Expressions</code> 中的布尔表达式.</p>
+<pre><code class="language-sql">select t1.*, 
+    if((case 
+            when operator = &quot;&gt;&quot; then t2.value&gt;t3.value
+            when operator = &quot;&lt;&quot; then t2.value&lt;t3.value
+        else t2.value=t3.value end) = 1,&quot;true&quot;, &quot;false&quot;) as value
+from Expressions t1
+left join `Variables` t2 on t1.left_operand = t2.`name`
+left join `Variables` t3 on t1.right_operand = t3.`name`
+</code></pre>
+<h2 id="1454至少连续-5-天登录的用户名">1454.至少连续 5 天登录的用户名</h2>
+<pre><code class="language-sql">select  distinct t2.id, t3.name
+from
+(
+    select id, login_date,
+        date_sub(login_date, interval(row_number() over(partition by id order by login_date asc)) day) as date_rn
+    from (
+        select distinct id, login_date
+        from Logins
+    ) t1
+) t2
+left join Accounts t3 on t2.id = t3.id
+group by t2.id, date_rn
+having count(login_date)&gt;=5
+order by t2.id;
+</code></pre>
+<h2 id="1459-矩形面积">1459. 矩形面积</h2>
+<p>由表中任意两点可以形成的<strong>所有可能的矩形</strong>（仅考虑边与 x 轴和 y 轴平行的情况）。</p>
+<p>结果表中的每一行包含三列 (p1, p2, area) 如下:</p>
+<p>p1 和 p2 是<strong>矩形两个对角的点的 id</strong> 且 <strong>p1 &lt; p2</strong><br>
+矩形的面积由列 area 表示<br>
+请按照面积大小降序排列，如果面积相同的话, 则按照 p1 和 p2 升序对结果表排序</p>
+<pre><code class="language-sql">select t1.id as p1, t2.id as p2, abs(t1.x_value-t2.x_value) * abs(t1.y_value-t2.y_value)  as area
+from points t1, points t2
+where t1.id&lt;t2.id
+and  t1.x_value-t2.x_value&lt;&gt;0 
+and  t1.y_value-t2.y_value&lt;&gt;0
+order by area desc, p1 asc, p2 asc;
+</code></pre>
+<h2 id="1501可以放心投资的国家">1501.可以放心投资的国家</h2>
+<p>想要投资的国家是: 该国的平均通话时长要严格地大于全球平均通话时长.</p>
+<h3 id="回忆-字符串处理部分函数">回忆: 字符串处理部分函数</h3>
+<pre><code class="language-sql">select length('ysy'),
+		upper('ysy'),lower('YSy'),
+
+    # 截取 切片(py) / substr(r)
+    left('Kindergarten', 4),   # 前4个
+    right('Kindergarten', 6),  # 后6个
+    substring('Kindergarten', 3, 2),   # 从第3个（起始位置）往后的2个字母
+    
+    # 替换 replace(py) / gsub(r)
+    replace('Kindergarten', 'garten','garden'),
+    
+    # 连接 +(py) / paste (r)
+    concat('aa','+','bb')   # 输出aa+bb
+;
+</code></pre>
+<pre><code class="language-mysql">select distinct Country.`name` as country
+from Calls
+left join person
+on (Calls.caller_id = Person.id or Calls.callee_id = Person.id)
+left join Country on Country.country_code = left(person.phone_number,3)
+group by left(phone_number,3)
+having avg(duration)&gt;(
+    select avg(duration)
+    from Calls
+)
+</code></pre>
+<h2 id="1555银行账户概要">1555.银行账户概要</h2>
+<p>查询每个用户的当前余额，并检查他们是否已透支（当前额度小于 0）</p>
+<pre><code class="language-sql">select 
+    t3.user_id, 
+    user_name, credit1 + sum(ifnull(t4.amount,0)) as credit,
+    if(credit1 + sum(ifnull(t4.amount,0))&lt;0,&quot;Yes&quot;,&quot;No&quot;) as credit_limit_breached
+from
+(
+    select t1.user_id, t1.user_name, 
+        t1.credit - sum(ifnull(t2.amount,0)) as credit1
+    from users t1
+    left join transactions t2 on t1.user_id = t2.paid_by
+    group by t1.user_id
+) t3
+left join transactions t4 
+on t3.user_id = t4.paid_to
+group by t3.user_id
+</code></pre>
+<h2 id="1613-找到遗失的id递归需复习">1613. 找到遗失的ID——递归（需复习）</h2>
+<p>遗失的顾客id是指那些不在 Customers 表中, 值却处于 1 和表中最大 customer_id 之间的id.</p>
+<pre><code class="language-sql">-- 递归生成1到100
+with recursive t1 as 
+(
+    select 1 as n
+    union all 
+    select n+1 from t1 where n &lt; 100)
+-- 按照条件筛选
+select n as ids
+from t1
+where n &gt;=1
+and n &lt;= (
+    select max(customer_id)
+    from Customers
+)
+and n not in (
+    select distinct customer_id
+    from Customers
+)
+order by ids
+</code></pre>
+<h2 id="1709-访问日期之间的最大空档期">1709. 访问日期之间的最大空档期</h2>
+<p>假设今天的日期是 '2021-1-1' 。编写 SQL 语句，对于每个 user_id ，求出相邻访问（若该次访问是最后一次，则为今天【这里暗示要 left join 】）之间<strong>最大的空档期天数</strong> window 。</p>
+<pre><code class="language-sql">with tmp as(
+    select user_id, visit_date, 
+        row_number() over(partition by user_id order by visit_date asc) as rn
+    from UserVisits
+)
+
+select t1.user_id as user_id,
+    max(datediff(ifnull(t2.visit_date,&quot;2021-01-01&quot;), t1.visit_date)) as biggest_window
+from tmp t1
+left join tmp t2
+on t1.user_id = t2.user_id
+and t1.visit_date&lt;t2.visit_date
+and t1.rn+1 = t2.rn
+group by t1.user_id
+order by user_id;
+</code></pre>
+<hr>
+<h1 id="中等且无聊">中等且无聊</h1>
+<p>前面的感觉还不错，后面的是无聊的中等题：</p>
+<h2 id="1468-税后工资">1468. 税后工资</h2>
+<p>如果这个公司所有员工最高工资不到 1000 ，税率为 0%<br>
+如果这个公司所有员工最高工资在 1000 到 10000 之间，税率为 24%<br>
+如果这个公司所有员工最高工资大于 10000 ，税率为 49%<br>
+按任意顺序返回结果，税后工资结果取整</p>
+<pre><code class="language-sql">select t1.company_id,employee_id, employee_name, round(salary*ratio,0) as salary
+from Salaries t1
+left join 
+(
+    select company_id,
+        (case 
+        when max(salary)&lt;1000 then 1
+        when max(salary) between 1000 and 10000 then 1-0.24
+        when max(salary) &gt; 10000 then 1-0.49
+    else null end) as ratio
+    from salaries
+    group by company_id
+) t2
+on t1.company_id  = t2.company_id;
+</code></pre>
+<h2 id="1532最近的三笔订单">1532.最近的三笔订单</h2>
+<p>找到每个用户的最近三笔订单。如果用户的订单少于 3 笔，则返回他的全部订单。</p>
+<pre><code class="language-sql">select Customers.`name` as customer_name, t1.customer_id as customer_id, order_id, order_date
+from
+(
+    select customer_id,  order_id, order_date, 
+        row_number()over(partition by customer_id order by order_date desc) as rk
+    from orders
+) t1
+left join Customers
+on t1.customer_id = Customers.customer_id
+where rk&lt;=3
+order by customer_name asc, customer_id asc, order_date desc;
+</code></pre>
+<h2 id="1596-顾客最经常订购的商品">1596. 顾客最经常订购的商品</h2>
+<p>找到每一个顾客最经常订购的商品（可能不止一种）。表单应该有每一位至少下过一次单的顾客 customer_id , 他最经常订购的商品的 product_id 和 product_name</p>
+<pre><code class="language-sql">select t1.customer_id, t1.product_id, t2.product_name
+from
+(
+    select customer_id, product_id, count(order_id), 
+        rank() over (partition by customer_id order by count(order_id) desc) as rk
+    from orders
+    group by customer_id, product_id
+) t1
+left join Products t2 on t1.product_id = t2.product_id
+where rk = 1;
+</code></pre>
+<h2 id=""></h2>
+<h2 id="1715-苹果和橘子的个数">1715. 苹果和橘子的个数</h2>
+<p>查询每个大箱子中苹果和橘子的个数。如果大箱子中包含小盒子，还应当包含小盒子中苹果和橘子的个数。</p>
+<pre><code class="language-sql">select sum(ifnull(boxes.apple_count,0))+sum(ifnull(chests.apple_count,0)) as apple_count,
+    sum(ifnull(boxes.orange_count,0))+sum(ifnull(chests.orange_count,0)) as orange_count
+from boxes 
+left join chests
+on boxes.chest_id = chests.chest_id
+</code></pre>
+<h2 id="1699两人的通话次数">1699.两人的通话次数</h2>
+<p>查询每一对用户 <code>(person1, person2)</code> 之间的通话次数和通话总时长，其中 <code>person1 &lt; person2</code> 。</p>
+<pre><code class="language-sql">select person1, person2, count(1) as call_count, sum(duration) as total_duration
+from (
+    select 
+        if(from_id&lt;to_id, from_id, to_id) as person1,
+        if(from_id&lt;to_id, to_id, from_id) as person2,
+        duration
+    from Calls
+) tmp 
+group by person1, person2
+</code></pre>
+<h2 id="1549-每件商品的最新订单">1549. 每件商品的最新订单</h2>
+<pre><code class="language-sql">SELECT product_name, t.product_id, order_id, order_date
+FROM(
+    SELECT *, rank() OVER(PARTITION BY product_id ORDER BY order_date DESC) AS rk 
+    FROM Orders
+) t LEFT JOIN Products p USING(product_id)
+WHERE rk = 1
+ORDER BY product_name, product_id, order_id
+</code></pre>
+<h2 id="1445-苹果-和-桔子">1445. <strong>苹果</strong> 和 桔子</h2>
+<p>报告每一天 <strong>苹果</strong> 和 <strong>桔子</strong> 销售的数目的差异.</p>
+<pre><code class="language-sql">select sale_date, 
+    sum(case when fruit=&quot;apples&quot; then sold_num else 0 end) - sum(case when fruit=&quot;oranges&quot; then sold_num else 0 end) as diff
+from Sales
+group by sale_date
+order by sale_date
+</code></pre>
+<h2 id="1398购买了-a-b-却没有买-c">1398.购买了 A  B 却没有买 C</h2>
+<pre><code class="language-sql">SELECT customer_id,customer_name 
+FROM Customers 
+WHERE 
+customer_id IN(SELECT customer_id FROM Orders WHERE product_name='A') 
+AND 
+customer_id IN(SELECT customer_id FROM Orders WHERE product_name='B') 
+AND 
+customer_id NOT IN(SELECT customer_id FROM Orders WHERE product_name='C')
+</code></pre>
+<h2 id="1393-股票损益">1393. 股票损益</h2>
+<p>编写一个SQL查询来报告每支股票的资本损益。</p>
+<p>股票的资本损益是一次或多次买卖股票后的全部收益或损失。</p>
+<p>以任意顺序返回结果即可。</p>
+<pre><code class="language-sql">with tmp as(
+  select stock_name, operation, price,
+		row_number()over(partition by stock_name order by operation_day) as rn
+	from stocks
+)
+select t1.stock_name, sum(t2.price - t1.price) as capital_gain_loss
+from tmp t1, tmp t2
+where t1.stock_name = t2.stock_name
+and t1.operation = &quot;buy&quot; 
+and t2.operation = &quot;sell&quot;
+and t1.rn+1 = t2.rn
+group by t1.stock_name
+</code></pre>
+<h2 id="1421净现值查询">1421.净现值查询</h2>
+<p>找到 Queries 表中每一次查询的净现值.</p>
+<pre><code class="language-sql">select q.id,q.year,ifnull(n.npv,0) npv 
+from queries q left join npv n
+on q.id=n.id and q.year=n.year
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sql 力扣速成（上）]]></title>
+        <id>https://yangggshuyi.github.io/post/sql-li-kou-su-cheng-shang/</id>
+        <link href="https://yangggshuyi.github.io/post/sql-li-kou-su-cheng-shang/">
+        </link>
+        <updated>2021-03-15T13:05:43.000Z</updated>
+        <summary type="html"><![CDATA[<p>任务完成了但也真学到恶心了，难过🙃</p>
+<figure data-type="image" tabindex="1"><img src="https://yangggshuyi.github.io/post-images/1615860345036.jpg" alt="" loading="lazy"></figure>
+]]></summary>
+        <content type="html"><![CDATA[<p>任务完成了但也真学到恶心了，难过🙃</p>
+<figure data-type="image" tabindex="1"><img src="https://yangggshuyi.github.io/post-images/1615860345036.jpg" alt="" loading="lazy"></figure>
+<!-- more -->
+<p>附近日感受：</p>
+<ol>
+<li>
+<p>觉得某人直男/直女癌/无法交流/不能理解的时候，其实对方有和他顺利交流的人，只不过不是你/没把你当他朋友/懒得考虑你/讨厌你罢了。</p>
+</li>
+<li>
+<p>心里上放松和行动上认真有可能兼备</p>
+</li>
+</ol>
+<p>下面是遇到的中等&amp;困难题：</p>
+<h1 id="262-行程和用户-需复习">262. 行程和用户 （需复习）</h1>
+<p>写一段 SQL 语句查出 &quot;2013-10-01&quot; 至 &quot;2013-10-03&quot; 期间<strong>非禁止用户</strong>（乘客和司机都必须未被禁止）的取消率。取消率的计算方式如下：<strong>(被司机或乘客取消的非禁止用户生成的订单数量) / (非禁止用户生成的订单总数)</strong>。返回结果表中的数据可以按任意顺序组织。其中取消率 Cancellation Rate 需要四舍五入保留 两位小数 。</p>
+<p>注意乘客和司机都必须未被禁止，这里  Users.Banned = &quot;no&quot; 相当于处理了乘客或者司机未被禁止。</p>
+<pre><code class="language-sql">-- 错误解答
+select trips.request_at as 日期, 
+	count(distinct (case when Status in (&quot;cancelled_by_driver&quot;, &quot;cancelled_by_client&quot;) then trips.id else full end))/count(distinct trips.id) as 当日取消率
+from Trips 
+left join Users 
+on (trips.Client_Id  = Users.Users_Id or trips.Driver_Id  = Users.Users_Id)
+and Users.Banned = &quot;no&quot;
+group by trips.request_at;
+
+-- 正确解答：
+-- 方法一需要两次join；方法二对cliend_id和driver_id都做剔除
+select Request_at as `Day`, 
+    round(count(distinct (case when Status in (&quot;cancelled_by_driver&quot;, &quot;cancelled_by_client&quot;) then t1.id else null end)) / count(distinct t1.id),2) as `Cancellation Rate`
+from trips t1
+inner join Users t2 on t1.Client_Id = t2.users_id
+inner join users t3 on t1.driver_id = t3.users_id
+and t1.Request_at between &quot;2013-10-01&quot; and &quot;2013-10-03&quot;
+and t2.banned = &quot;No&quot; and t3.banned = &quot;No&quot; 
+group by t1.Request_at;
+</code></pre>
+<h1 id="534游戏玩法分析">534.游戏玩法分析</h1>
+<p>编写一个 SQL 查询，同时报告每组玩家和日期，以及玩家在此日期之前玩家所玩的游戏总数。</p>
+<p>-- 累计求和问题</p>
+<pre><code class="language-sql">select player_id, event_date,
+	sum(games_played) over(partition by player_id order by event_date asc) as games_played_so_far
+from Activity
+order by player_id asc, event_date asc;
+</code></pre>
+<h1 id="550游戏玩法分析">550.游戏玩法分析</h1>
+<p>编写一个 SQL 查询，报告在首次登录的<strong>第二天再次登录</strong>的玩家的比率，四舍五入到小数点后两位。换句话说，您需要计算从首次登录日期开始至少连续两天登录的玩家的数量，然后除以玩家总数。</p>
+<pre><code class="language-sql">select round(count(distinct t2.player_id) / count(distinct t1.player_id), 2) as fraction
+from (
+  select player_id, min(event_date) as event_date
+  from Activity
+  group by player_id
+) t1
+left join 
+(
+  select distinct player_id,event_date -- 习惯先去重
+  from Activity
+  group by player_id,event_date
+)t2
+on t1.player_id = t2.player_id
+and datediff(t2.event_date, t1.event_date) = 1  -- t2-t1=1;
+</code></pre>
+<h1 id="569-员工薪水中位数">569. 员工薪水中位数</h1>
+<p><code>Employee</code> 表有三列：员工Id，公司名和薪水。请编写SQL查询来查找每个公司的薪水中位数。挑战点：你是否可以在不使用任何内置的SQL函数的情况下解决此问题。</p>
+<p>N 奇数：n+1/2，偶数 n/2 n/2+1 ——对所有n/2到n/2+1的数字求平均即可（实际这道题不需要求avg）</p>
+<pre><code class="language-sql">select t1.company, avg(salary)
+from(
+  select company, salary, row_number() over (partition by company order by salary asc) as rk
+	from employee
+)t1
+left join 
+(
+  select company, count(id) as num
+	from employee
+ 	group by company
+)t2
+on t1.company = t2.company
+where t1.rk between t2.num/2 and (t2.num/2 +1)
+group by t1.company;
+</code></pre>
+<h1 id="570至少有5名直接下属的经理">570.至少有5名直接下属的经理</h1>
+<p>给定 <code>Employee</code> 表，请编写一个SQL查询来查找至少有5名直接下属的经理。对于上表，您的SQL查询应该返回：</p>
+<pre><code class="language-sql">select `name`
+from(
+  select t1.id as id, t1.`name` as `name`, count(distinct t2.id) as num
+  from Employee t1
+  left join Employee t2
+  on t1.id = t2.ManagerId
+  group by t1.id,t1.`name`
+) tmp
+where num&gt;=5;
+</code></pre>
+<h1 id="571给定数字的频率查询中位数-需复习">571.给定数字的频率查询中位数 （需复习）</h1>
+<p><code>Numbers</code> 表保存数字的值及其频率，请编写一个查询来查找所有数字的中位数并将结果命名为 <code>median</code></p>
+<p>当某一数字的 <strong>正序和逆序累计</strong> 均大于 <strong>整个序列的数字个数的一半</strong> 时即为中位数</p>
+<pre><code class="language-sql">select avg(number) as median
+from (
+  select number, 
+    sum(frequency) over(order by number asc) as freq1,
+    sum(frequency) over(order by number desc) as freq2
+  from numbers
+) t1,
+(
+  select sum(frequency)*0.5 as num
+	from numbers
+)  t2
+where freq1&gt;= num and freq2&gt;= num ;
+</code></pre>
+<h1 id="574当选者">574.当选者</h1>
+<pre><code class="language-sql">select Name from Candidate
+where id = (
+    select CandidateId from Vote
+    group by CandidateId
+    order by count(id) desc
+    limit 1
+);
+</code></pre>
+<h1 id="578查询回答率最高的问题">578.查询回答率最高的问题</h1>
+<p>回答率：回答数占显示数的比例</p>
+<pre><code class="language-sql">select question_id as survey_log
+from(
+    select question_id,
+        count(case when action = 'answer' then question_id else null end) / count(case when action = 'show' then question_id else null end)  as 回答率
+    from survey_log
+    group by question_id
+    order by 回答率 desc
+    limit 1
+) tmp;
+</code></pre>
+<h1 id="579查询员工的累计薪水">579.查询员工的累计薪水</h1>
+<p>请你编写 SQL 语句，对于每个员工，查询他除最近一个月（即最大月）之外，剩下每个月的近三个月的累计薪水（不足三个月也要计算）。</p>
+<p>结果请按 Id 升序，然后按 Month 降序显示。</p>
+<pre><code class="language-sql">select id, `month`, salary
+from
+(
+  select t1.id,
+		t2.`month`, 
+  	sum(case when t1.`month` &gt; t2.`month`-3 and t1.`month` &lt;= t2.`month` then t1.salary else 0 end) as salary,
+  	row_number() over(partition by t1.id order by t2.`month` desc) as rk
+  from Employee t1
+  left join  Employee t2
+  on t1.id = t2.id 
+  group by t1.id, t2.`month`
+) tmp
+where rk &gt; 1;
+</code></pre>
+<h1 id="580-统计专业学生人数">580. 统计专业学生人数</h1>
+<p>写一个查询语句，查询 <em><strong>department</strong></em> 表中每个专业的学生人数 （即使没有学生的专业也需列出）。查询结果按照学生人数降序排列。</p>
+<pre><code class="language-sql">select t1.dept_name,
+	(case when t2.num is null then 0 else t2.num end) as student_number
+from department t1
+left join 
+(
+  select dept_id, count(student_id) as num
+  from student
+  group by dept_id
+) t2
+on t1.dept_id = t2.dept_id
+order by num desc;
+</code></pre>
+<h1 id="585-投资金额">585. 投资金额</h1>
+<p>写一个查询语句，将 2016 年 (TIV_2016) 所有成功投资的金额加起来，保留 2 位小数。</p>
+<p>1.他在 2015 年的投保额 (TIV_2015) 至少跟一个其他投保人在 2015 年的投保额相同。2.他所在的城市必须与其他投保人都不同（也就是说维度和经度不能跟其他任何一个投保人完全相同）。</p>
+<p><strong>concat</strong>(a,b) ，同时匹配经纬度更合理</p>
+<pre><code class="language-sql">select sum(TIV_2016) as TIV_2016
+from insurance
+where concat(lat,lon) in (
+    select concat(lat,lon)
+    from insurance
+    group by concat(lat,lon)
+    having count(pid)=1 
+)
+and TIV_2015 in (
+    select distinct TIV_2015
+    from insurance
+    group by TIV_2015
+    having count(pid)&gt;1
+);
+</code></pre>
+<h1 id="601-体育馆的人流量">601. 体育馆的人流量</h1>
+<p>编写一个 SQL 查询以找出每行的人数大于或等于 <code>100</code> 且 <code>id</code> 连续的三行或更多行记录。</p>
+<pre><code class="language-sql">select t1.*
+from Stadium t1
+,
+(
+    select id as start_id, id+count(rk)-1 as end_id
+    from(
+        select row_number()over(order by visit_date asc) as rk, visit_date,id
+        from Stadium
+        where people&gt;=100
+    ) tmp
+    group by id-rk
+    having count(rk)&gt;=3
+) t2
+where  (t1.id&gt;=t2.start_id and  t1.id&lt;=t2.end_id)
+</code></pre>
+<h1 id="602好友申请">602.好友申请</h1>
+<p>表 <code>request_accepted</code> 存储了所有好友申请通过的数据记录。写一个查询语句，求出谁拥有最多的好友和他拥有的好友数目。好友申请只会被接受一次，所以不会有 requester_id 和 accepter_id 值都相同的重复记录。</p>
+<p><strong>Union all 不合并重复行</strong></p>
+<pre><code class="language-sql">select id, sum(friend) as num
+from
+(
+    select requester_id as id, count(requester_id) as friend
+    from request_accepted
+    group by requester_id
+    union all
+    select accepter_id as id, count(accepter_id) as friend
+    from request_accepted
+    group by accepter_id
+) tmp
+group by id
+order by num desc
+limit 1;
+</code></pre>
+<h1 id="608树节点">608.树节点</h1>
+<p>给定一个表 <code>tree</code>，id 是树节点的编号， p_id 是它父节点的 id 。树中每个节点属于以下三种类型之一：叶、根、内部节点。写一个查询语句，输出所有节点的编号和节点的类型，并将结果按照节点编号排序。</p>
+<pre><code class="language-sql">select distinct t1.id,
+	(case 
+   	when t2.id is null and t1.p_id is not null then &quot;Leaf&quot;
+  	when t1.p_id is null then &quot;Root&quot;
+  else &quot;Inner&quot; end) as `Type`
+from tree t1
+left join tree t2
+on t2.p_id = t1.id;
+</code></pre>
+<h1 id="612平面上的最近距离">612.平面上的最近距离</h1>
+<p>表 <code>point_2d</code> 保存了所有点（多于 2 个点）的坐标 (x,y) ，这些点在平面上两两不重合。</p>
+<p>写一个查询语句找到两点之间的最近距离，保留 2 位小数。</p>
+<pre><code class="language-sql">select round(sqrt(min(dist)),2) as shortest
+from  
+(
+  select distinct (t1.x-t2.x)*(t1.x-t2.x)+(t1.y-t2.y)*(t1.y-t2.y) as dist
+  from point_2d t1, point_2d t2
+) tmp
+where dist&gt;0;
+</code></pre>
+<h1 id="614二级关注者">614.二级关注者</h1>
+<p>表 <code>follow</code> 会有 2 个字段： followee，follower。对每一个关注者，查询关注他的关注者的数目</p>
+<pre><code class="language-sql">select t1.follower, count(distinct t2.follower) as num
+from follow t1
+left join follow t2
+on t1.follower = t2.followee
+group by t1.follower
+having count(distinct t2.follower) &gt;0;
+</code></pre>
+<h1 id="615平均工资部门与公司比较">615.平均工资：部门与公司比较</h1>
+<p>在每一个工资发放日，部门平均工资与公司平均工资的比较结果 （高 / 低 / 相同）。</p>
+<pre><code class="language-sql">select a.pay_month, department_id,
+    (case when avg_dep&gt;avg_comp then &quot;higher&quot;
+        when avg_dep=avg_comp then &quot;same&quot;
+        else &quot;lower&quot; 
+    end) as comparison
+from
+(
+  select date_format(t1.pay_date, &quot;%Y-%m&quot;) as pay_month, t2.department_id, avg(t1.amount) as avg_dep
+  from salary t1
+  inner join employee t2
+  on t1.employee_id = t2.employee_id
+  group by date_format(t1.pay_date,&quot;%Y-%m&quot;), t2.department_id
+) a
+,
+(
+  select date_format(pay_date,&quot;%Y-%m&quot;) as pay_month, avg(amount) as avg_comp
+  from salary 
+  group by date_format(pay_date,&quot;%Y-%m&quot;) 
+) b
+where a.pay_month = b.pay_month;
+</code></pre>
+<h1 id="618学生地理信息报告需复习">618.学生地理信息报告（需复习）</h1>
+<p>长表变宽表，实现列的透视表操作，使得每个学生按照姓名的字母顺序依次排列在对应的大洲下面。输出的标题应依次为美洲（America）、亚洲（Asia）和欧洲（Europe）:</p>
+<table>
+<thead>
+<tr>
+<th>America</th>
+<th>Asia</th>
+<th>Europe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jack</td>
+<td>Xi</td>
+<td>Pascal</td>
+</tr>
+<tr>
+<td>Jane</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-sql">-- 错误解答
+with tmp as(
+select `name`, continent,
+    row_number()over(partition by continent order by `name`) as rk
+from student
+)
+select t1.name,t2.name,t3.name
+from tmp t1, tmp t2, tmp t3
+where t1.rk = t2.rk and t2.rk = t3.rk
+and t1.continent = &quot;America&quot; 
+and t2.continent = &quot;Asia&quot; 
+and t3.continent = &quot;Europe&quot;;
+
+
+-- 正确解答(max函数可以从null和非null中取出非Null)
+SELECT
+    MAX(IF(continent = 'America', name, NULL)) America,
+    MAX(IF(continent = 'Asia', name, NULL)) Asia,
+    MAX(IF(continent = 'Europe', name, NULL)) Europe
+FROM 
+(
+  select `name`, continent,
+  	row_number()over(partition by continent order by `name`) as rk
+	from student
+) tmp
+GROUP BY rk;
+</code></pre>
+<h1 id="626换座位">626.换座位</h1>
+<p>纵列的 <strong>id</strong> 是连续递增的，想改变相邻俩学生的座位。即12交换 34交换。。。</p>
+<pre><code class="language-sql">select id,
+    (case  
+        when (id = max_id and id%2=1) then student
+        when (id &lt; max_id and id%2=1) then next_anme
+        else last_name
+    end) as student
+from
+(
+    select id,student,
+        lead(student)over(order by id) next_anme,
+        lag(student)over(order by id) last_name
+    from seat
+) t1
+,
+(
+    select max(id) as max_id
+    from seat
+) t2;
+</code></pre>
+<h1 id="1045买下所有产品的客户">1045.买下所有产品的客户</h1>
+<p>从 <code>Customer</code> 表中查询购买了 <code>Product</code> 表中所有产品的客户的 id。</p>
+<pre><code class="language-sql">select distinct customer_id
+from(
+  select customer_id, count(distinct Product_key) as type_num
+  from Customer
+  group by customer_id
+) tmp
+where type_num = (
+  select count(distinct Product_key)
+	from Product
+);
+</code></pre>
+<h1 id="1070产品销售分析">1070.产品销售分析</h1>
+<p>选出每个销售产品的 <strong>第一年</strong> 的 <strong>产品 id</strong>、<strong>年份</strong>、<strong>数量</strong> 和 <strong>价格</strong>。</p>
+<pre><code class="language-sql">select product_id, 
+    year as first_year,
+    quantity, 
+    price
+from sales
+where (product_id, year) in (
+  select product_id, min(year)
+  from sales
+  group by product_id
+)
+</code></pre>
+<h1 id="1084销售分析">1084.销售分析</h1>
+<p>报告<strong>仅</strong>在<strong>2019-01-01</strong>至<strong>2019-03-31</strong>（含）之间出售的商品。</p>
+<pre><code class="language-sql">select product_id, product_name
+from product
+where product_id not in (
+    select distinct product_id
+    from sales
+    where (sale_date&gt;&quot;2019-03-31&quot; or sale_date&lt;&quot;2019-01-01&quot;)
+)
+and product_id in (
+    select distinct product_id
+    from sales
+    where (sale_date &lt;=&quot;2019-03-31&quot; and sale_date&gt;=&quot;2019-01-01&quot;)
+)
+</code></pre>
+<h1 id="1097游戏玩法分析首登留存率">1097.游戏玩法分析——首登留存率</h1>
+<pre><code class="language-sql">select t1.event_date as install_dt,
+    count(distinct t1.player_id) as installs, 
+    round(count(distinct t2.player_id) / count(distinct t1.player_id),2) as Day1_retention
+from (
+  select player_id, min(event_date) as event_date
+  from Activity
+  group by player_id
+) t1-- 第一天登录
+left join Activity t2 
+on t1.player_id = t2.player_id
+and datediff(t2.event_date, t1.event_date)=1
+group by t1.event_date
+</code></pre>
+<p>这里记得考虑使用on and而不是where</p>
+<h1 id="1098小众书籍">1098.小众书籍</h1>
+<p>筛选出过去一年中订单总量少于10本的书籍 。注意：不考虑 上架（available from）距今 不满一个月 的书籍。并且 假设今天是 2019-06-23 。</p>
+<p>date_SUB(&quot;2019-06-23&quot;, INTERVAL 365 DAY) = &quot;2018-06-23&quot;</p>
+<pre><code class="language-sql">select t1.book_id,
+    t1.name
+    -- , (case when t2.订单总量 is null then 0 else t2.订单总量 end ) as 订单总量
+from 
+(
+    select book_id, name
+    from books
+    where available_from &lt;= date_sub(&quot;2019-06-23&quot;, INTERVAL 1 month)
+) t1
+left join
+(
+    select book_id, sum(quantity) as &quot;订单总量&quot;
+    from Orders
+    where dispatch_date &gt;= date_sub(&quot;2019-06-23&quot;, INTERVAL 365 DAY)  
+    and dispatch_date &lt;= &quot;2019-06-23&quot;
+    group by book_id
+) t2
+on t1.book_id = t2.book_id
+where (t2.订单总量 is null or t2.订单总量&lt;10)
+</code></pre>
+<p>一定注意 on 和 where 的区别！</p>
+<h1 id="1107每日新用户统计">1107.每日新用户统计</h1>
+<p>从今天起最多 90 天内，每个日期该日期首次登录的用户数，今天是 <strong>2019-06-30</strong>.</p>
+<pre><code class="language-sql">select first_login as login_date,
+	count(distinct user_id) as user_count
+from
+(
+  select user_id, min(activity_date) as first_login
+  from traffic
+  where activity = &quot;login&quot;
+  group by user_id
+) tmp
+where first_login&lt;=&quot;2019-06-30&quot; 
+and first_login &gt;= date_sub(&quot;2019-06-30&quot;,interval 90 day)
+group by first_login;
+</code></pre>
+<h1 id="1126-查询活跃业务">1126. 查询活跃业务</h1>
+<p>如果一个业务的某个事件类型的发生次数<strong>大于</strong>此事件类型在所有业务中的平均发生次数，并且该业务至少有两个这样的事件类型，那么该业务就可被看做是活跃业务。</p>
+<pre><code class="language-sql">select business_id
+    -- , count(distinct(case when occurences &gt; avg_occr then events.event_type else null end)) 
+from events
+left join
+(
+    select event_type, avg(occurences) as avg_occr
+    from events
+    group by event_type
+) t1
+on events.event_type = t1.event_type
+group by business_id
+having count(distinct(case when occurences &gt; avg_occr then events.event_type else null end))&gt;=2
+</code></pre>
+<h1 id="1127-用户购买平台需复习">1127. 用户购买平台（需复习）</h1>
+<p>每天 <strong>仅</strong> 使用手机端用户、<strong>仅</strong> 使用桌面端用户和 <strong>同时</strong> 使用桌面端和手机端的用户人数和总支出金额，null的时候需要记作0</p>
+<pre><code class="language-sql">-- 构造日期*platform的笛卡尔积
+with table_2 as(
+    select t4.spend_date, t3.platform
+    from 
+	(
+    select 'mobile' as platform
+    union
+    select 'desktop' as platform
+    union
+    select 'both' as platform
+	) t3,
+	(
+    select distinct spend_date
+    from Spending
+    order by spend_date
+	) t4
+)
+-- left join 
+select table_2.spend_date as spend_date, 
+    table_2.platform as platform, 
+    ifnull(sum(table_1.amount),0) as total_amount,
+    count(table_1.user_id) as total_users
+from table_2
+left join 
+(
+    select t1.spend_date, t1.user_id, sum(t1.amount) as amount,
+        (case when t2.num=1 then t1.platform else &quot;both&quot; end) as platform
+    from spending t1
+  	inner join (
+            select spend_date, user_id, 
+                count(distinct platform) as num
+            from Spending
+            group by spend_date, user_id
+      ) t2
+    on t1.spend_date = t2.spend_date
+    and t1.user_id = t2.user_id
+    group by t1.spend_date, t1.user_id
+) table_1
+on table_1.spend_date = table_2.spend_date
+and  table_1.platform = table_2.platform
+group by table_2.spend_date, table_2.platform
+</code></pre>
+<h1 id="1132报告的记录2">1132.报告的记录2</h1>
+<p>在被报告为垃圾帖子（spam）中，被移除的帖子的比例的每日平均值，小数点后 2 位。</p>
+<pre><code class="language-sql">select round(avg(ratio)*100,2) as average_daily_percent
+from 
+(
+    select action_date,
+        avg(case when t2.remove_date is null then 0 else 1 end) as ratio
+    from
+    (
+      select distinct action_date, post_id
+      from Actions
+      where extra = &quot;spam&quot;
+    ) t1
+    left join Removals t2
+    on t1.post_id = t2.post_id
+    group by action_date
+) t2
+</code></pre>
+<h1 id="1149-文章浏览">1149. 文章浏览</h1>
+<p>找出在同一天阅读至少两篇文章的人，结果按照 id 升序排序</p>
+<pre><code class="language-sql">select distinct viewer_id as id
+from views
+group by view_date, viewer_id
+having count(distinct article_id)&gt;=2
+order by id asc
+</code></pre>
+<h1 id="1158-市场分析1">1158. 市场分析1</h1>
+<p>用户 buyer_id  |注册日期 join_date  |  2019 年作为买家的订单总数orders_in_2019</p>
+<pre><code class="language-sql">select t1.user_id as buyer_id, t1.join_date, ifnull(t2.orders_num,0) as orders_in_2019
+from users t1
+left join
+(
+  select buyer_id, count(distinct order_id) as orders_num
+  from orders
+  where order_date between &quot;2019-01-01&quot; and &quot;2019-12-31&quot;
+  group by buyer_id
+) t2
+on t1.user_id = t2.buyer_id
+</code></pre>
+<h1 id="1159市场分析2">1159.市场分析2</h1>
+<p>确定每个用户按日期顺序<strong>卖出的第二件商品的品牌是否是他们最喜爱的品牌</strong>。如果一个用户卖出少于两件商品，查询的结果是 no。</p>
+<pre><code class="language-sql">select t1.user_id as seller_id,
+     (case when t1.favorite_brand=t3.item_brand then &quot;yes&quot;
+else &quot;no&quot; end) as 2nd_item_fav_brand
+from Users t1
+left join 
+(
+    select seller_id, item_id
+    from(
+        select seller_id, item_id, 
+            row_number() over(partition by seller_id order by order_date asc) as rn
+        from orders
+    ) tmp
+    where rn=2
+) t2
+on t1.user_id = t2.seller_id
+left join Items t3
+on t3.item_id = t2.item_id
+order by seller_id
+</code></pre>
+<h1 id="1164指定日期的产品价格">1164.指定日期的产品价格</h1>
+<p>Products 记录了 某产品 在某个日期 更改后 的新价格。查找在 <strong>2019-08-16</strong> 时全部产品的价格，假设所有产品在修改前的价格都是 <strong>10。</strong></p>
+<p>小于0816的所有日期里的最大值对应的价格，没有改过的话就是10</p>
+<pre><code class="language-sql">select t1.product_id, ifnull(t2.new_price,10) as price
+from 
+(
+  select distinct product_id
+  from Products
+) t1
+left join 
+(
+  -- 修改过价格的
+  select product_id, new_price
+  from(
+        select product_id
+          , row_number() over(partition by product_id order by change_date desc) as rn
+          , new_price
+      from Products
+      where change_date&lt;=&quot;2019-08-16&quot;
+  ) tmp
+  where rn = 1
+) t2
+on t1.product_id = t2.product_id
+</code></pre>
+<h1 id="1174即时实物配送2">1174.即时实物配送2</h1>
+<p>如果顾客期望<strong>配送日期和下单日期相同</strong>，则该订单 「即时订单」，否则「计划订单」。</p>
+<p>「首次订单」是顾客最早创建的订单。我们保证一个顾客只会有一个「首次订单」。</p>
+<p>所有用户的首次订单中即时订单的比例。保留两位小数。</p>
+<pre><code class="language-sql">select round(avg(case when customer_pref_delivery_date=order_date then 1 else 0 end)*100, 2) as immediate_percentage 
+from 
+(
+    select * ,
+        row_number() over(partition by customer_id order by order_date) as rk
+    from Delivery
+) tmp
+where rk = 1;
+</code></pre>
+<h1 id="1193-每月交易1">1193. 每月交易1</h1>
+<p>每个月和每个国家的事务数及其总金额、已批准的事务数及其总金额</p>
+<pre><code class="language-sql">select date_format(trans_date, &quot;%Y-%m&quot;) as `month`,
+	country,
+	count(id) as trans_count,
+    count(case when state = &quot;approved&quot; then id else null end) as approved_count,
+	sum(amount) as trans_total_amount,
+	sum(case when state = &quot;approved&quot; then amount else 0 end) as approved_total_amount
+from Transactions
+group by date_format(trans_date, &quot;%Y-%m&quot;), country;
+</code></pre>
+<h1 id="1194-锦标赛优胜者">1194. 锦标赛优胜者</h1>
+<p>每组的获胜者是在组内<strong>累积得分最高的选手</strong>。如果平局，<code>player_id</code> <strong>最小</strong> 的选手获胜。</p>
+<pre><code class="language-sql">select group_id,player_id
+from 
+(
+    select  t1.group_id, t1.player_id, 
+        row_number() over(partition by t1.group_id order by ifnull(total_score,0) desc) as rn
+    from Players t1
+    left join
+    (
+        select player_id, sum(first_score)+sum(second_score) as total_score
+        from(
+            select first_player as player_id, sum(first_score) as first_score, 0 as second_score
+            from matches 
+            group by first_player
+            union all
+            select second_player as player_id, 0 as first_score, sum(second_score) as second_score
+            from matches 
+            group by second_player
+        ) tmp
+        group by player_id
+    ) t2
+    on t1.player_id = t2.player_id
+) t3
+where rn = 1;
+</code></pre>
+<h1 id="1204最后进入电梯的">1204.最后进入电梯的</h1>
+<p>电梯最大载重量为 <strong>1000</strong>。查找最后一个能进入电梯且不超过重量限制的 <code>person_name</code> 。</p>
+<pre><code class="language-sql">select person_name
+from(
+  select person_name, 
+    sum(weight) over(order by turn asc) as weight_sum
+  from queue
+) tmp
+where weight_sum &lt;= 1000
+order by weight_sum desc
+limit 1;
+</code></pre>
+<h1 id="1205-每月交易2">1205. 每月交易2</h1>
+<p>以查找每个月和每个国家/地区的已批准交易的数量及其总金额、退单的数量及其总金额。</p>
+<pre><code class="language-sql">select `month`,country,
+    sum(approved_count) as approved_count,
+    sum(approved_amount) as approved_amount,
+    sum(chargeback_count) as chargeback_count,
+    sum(chargeback_amount) as chargeback_amount
+from
+(
+  	-- 批准交易的
+    select date_format(trans_date, &quot;%Y-%m&quot;) as `month`, country,
+        count(id) as  approved_count,
+        sum(amount) as approved_amount,
+        0 as chargeback_count,
+        0 as chargeback_amount
+    from Transactions
+    where state = &quot;approved&quot;
+    group by date_format(trans_date, &quot;%Y-%m&quot;), country
+    
+  	union all
+    -- 退单的
+  	select 
+        date_format(t1.trans_date, &quot;%Y-%m&quot;) as `month`,
+        t2.country,
+        0 as approved_count,
+        0 as approved_amount,
+        count(t2.id) as chargeback_count,
+        sum(t2.amount) as chargeback_amount
+    from Chargebacks t1
+    inner join Transactions t2
+    on t1.trans_id = t2.id
+    group by date_format(t1.trans_date, &quot;%Y-%m&quot;), t2.country
+) tmp
+group by `month`,country
+</code></pre>
+<h1 id="1212-查询球队积分">1212. 查询球队积分</h1>
+<p>赢一场得三分；平一场得一分；输一场不得分。<br>
+查询每个队的 team_id，team_name 和 num_points。结果根据 num_points 降序排序，如果有两队积分相同，那么这两队按 team_id  升序排序。</p>
+<pre><code class="language-sql">-- my answer
+select 
+    Teams.team_id,
+    Teams.team_name,
+    ifnull(sum(tmp.host_goals),0) + ifnull(sum(tmp.guest_goals),0) as num_points
+from Teams
+left join
+(
+  select host_team as team_id, 
+    sum(case when host_goals&gt;guest_goals then 3 
+      when  host_goals=guest_goals then 1
+    else 0 end) as host_goals,
+    0 as guest_goals
+  from matches
+  group by host_team
+  union all
+  select guest_team as team_id, 
+    0 as host_goals,
+    sum(case when host_goals&lt;guest_goals then 3 
+      when  host_goals=guest_goals then 1
+    else 0 end) as guest_goals
+  from matches
+  group by guest_team
+) tmp
+on Teams.team_id = tmp.team_id
+group by team_id
+order by num_points desc, team_id asc;
+
+-- 写的有点复杂，参考题解
+-- 不用 union 用 复杂的 or 
+select t1.team_id,t1.team_name,
+	sum((case when (t1.team_id = t2.host_team and host_goals&gt;guest_goals) or (t1.team_id = t2.guest_team and host_goals&lt;guest_goals)  then 3
+   when host_goals=guest_goals then 1
+   else 0
+  end)) as num_points
+from teams t1
+left join matches t2
+on (t1.team_id = t2.host_team or t1.team_id = t2.guest_team)
+group by t1.team_id, t1.team_name
+order by num_points desc, team_id asc
+</code></pre>
+<h1 id="1225-报告系统状态的连续日期需复习">1225. 报告系统状态的连续日期（需复习）</h1>
+<p>系统 每天 运行一个任务。每个任务都独立于先前的任务。任务的状态可以是失败或是成功。</p>
+<p>编写一个 SQL 查询 2019-01-01 到 2019-12-31 期间任务<strong>连续同状态 period_state 的起止日期</strong>（start_date 和 end_date）。即如果任务失败了，就是失败状态的起止日期，如果任务成功了，就是成功状态的起止日期。</p>
+<p>最后结果按照起始日期 start_date 排序</p>
+<pre><code class="language-sql">with tmp as(
+    select fail_date as date_day,
+  -- 用datediff 而不是原本日期，以避免判定1.31和2.1不是连续的这种情况
+        datediff(fail_date, &quot;2019-01-01&quot;)+1 as date_day2,
+         &quot;failed&quot; as period_state
+    from Failed
+    union 
+    select success_date as date_day,
+        datediff(success_date, &quot;2019-01-01&quot;)+1 as date_day2,
+        &quot;succeeded&quot; as period_state
+    from Succeeded
+) -- 先union
+-- 连续按照day - row_number 计算
+select period_state,
+      min(date_day) as start_date,
+      max(date_day) as end_date
+from(
+    select date_day, period_state, 
+        row_number() over(partition by period_state order by date_day2 asc) as rn,
+        date_day2 - row_number() over(partition by period_state order by date_day2 asc) as date_rn
+    from tmp
+    where date_day&gt;=&quot;2019-01-01&quot; and date_day&lt;=&quot;2019-12-31&quot;
+) tmp2
+group by period_state, date_rn 
+order by start_date asc;
+</code></pre>
+<h1 id="1264页面推荐">1264.页面推荐</h1>
+<p>写一段 SQL  向<code>user_id</code> = 1 的用户，推荐其朋友们喜欢的页面。不要推荐该用户已经喜欢的页面。你返回的结果中不应当包含重复项。</p>
+<pre><code class="language-sql">select distinct page_id as recommended_page
+from likes
+where user_id in (
+    select distinct (case when user1_id = 1 then user2_id else user1_id end) as friend_id
+    from Friendship
+    where (user1_id = 1 or user2_id = 1)
+)
+and page_id not in (
+    select distinct page_id
+    from likes
+    where user_id = 1
+)
+</code></pre>
+<h1 id="1270向公司ceo汇报工作的所有人">1270.向公司CEO汇报工作的所有人</h1>
+<p>用 SQL 查询出所有直接或间接向公司 CEO 汇报工作的职工的 employee_id 。由于公司规模较小，经理之间的间接关系不超过 3 个经理。可以以任何顺序返回的结果，不需要去重。</p>
+<pre><code class="language-sql">select distinct employee_id
+from Employees
+where manager_id  in (
+    select distinct employee_id
+    from Employees
+    where manager_id  in (
+        select distinct employee_id
+        from Employees
+        where manager_id = 1
+    )
+)
+and employee_id != 1
+</code></pre>
+<h1 id="1285-连续区间的开始和结束数字">1285. 连续区间的开始和结束数字</h1>
+<p><code>Logs</code> 表中的连续区间的开始数字和结束数字。按照 <code>start_id</code> 排序。</p>
+<pre><code class="language-sql">select min(log_id) as start_id, max(log_id) as end_id
+from(
+  select log_id,log_id - row_number()over(order by log_id asc) as log_rk
+	from logs
+) tmp
+group by log_rk;
+</code></pre>
+<h1 id="1308-不同性别的每日分数统计">1308. 不同性别的每日分数统计</h1>
+<p>查询每种性别在每一天的总分，并按性别和日期对查询结果排序。</p>
+<pre><code class="language-sql">select gender, day, 
+    sum(score_points) over(partition by gender order by day) total
+from scores
+order by gender, day
+</code></pre>
+<h1 id="1321-餐馆营业额变化增长连续求和">1321. 餐馆营业额变化增长—连续求和</h1>
+<p>写一条 SQL 查询计算以 7 天（某日期 + 该日期前的 6 天）为一个时间段的顾客消费平均值。输出按照日期排序。</p>
+<p>连续求和：<strong>sum</strong>(amount) over(<strong>order by</strong> visited_on <strong>rows 6 preceding</strong>) 对当前和后6行连续求和</p>
+<pre><code class="language-sql">-- 普通解法
+select 
+    c1.visited_on, 
+    sum(c2.amount) as amount,
+    round(sum(c2.amount) / 7, 2) as average_amount
+from 
+(
+    select distinct visited_on
+    from Customer
+    where datediff(visited_on,(select min(visited_on) from Customer))&gt;=6
+) c1,
+Customer c2
+where datediff(c1.visited_on, c2.visited_on)&lt;=6
+and c2.visited_on &lt;= c1.visited_on
+group by c1.visited_on
+order by c1.visited_on asc
+
+
+-- 窗口函数新解法
+select * from
+(
+    select visited_on,
+        sum(amount) over(order by visited_on rows 6 preceding) as amount,
+        round(avg(amount) over(order by visited_on rows 6 preceding),2) as average_amount
+    from(
+         select visited_on, sum(amount) as amount 
+         from Customer
+         group by visited_on
+    )t1
+)t2 
+where datediff(visited_on, (select min(visited_on)from Customer))&gt;=6
+</code></pre>
+<h1 id="1336每次访问的交易次数">1336.每次访问的交易次数</h1>
+<p>多少客户访问了银行但没有进行任何交易，多少客户访问了银行进行了一次交易等等</p>
+<p>结果包含两列：</p>
+<p>transactions_count： 客户在一次访问中的交易次数<br>
+visits_count： 在 transactions_count 交易次数下<strong>相应的客户数量</strong><br>
+transactions_count 的值从 0 到所有用户一次访问中的 max(transactions_count)</p>
+<pre><code class="language-sql">select 
+from visits t1
+left join Transactions t2
+on t1.user_id=t2.user_id
+and 
+</code></pre>
+<h1 id="1341-电影评分">1341. 电影评分</h1>
+<p>请你编写一组 SQL 查询：</p>
+<p>查找评论电影数量最多的用户名。<br>
+如果出现平局，返回字典序较小的用户名。</p>
+<p>查找在 2020 年 2 月 平均评分最高 的电影名称。<br>
+如果出现平局，返回字典序较小的电影名称。</p>
+<p>查询分两行返回，查询结果格式如下例所示：</p>
+<pre><code class="language-sql">select `name` as results
+from
+(
+    select `name`,
+        count(1) as num
+    from Movie_Rating
+    left join Users on Movie_Rating.user_id = Users.user_id
+    group by `name`
+    order by num desc, `name` asc
+    limit 1
+) t1
+union all
+select title as results
+from 
+(
+    select title,
+        avg(case when date_format(created_at, &quot;%Y-%m&quot;)=&quot;2020-02&quot; then rating else null end ) as rating
+    from Movie_Rating
+    inner join Movies on Movie_Rating.movie_id = Movies.movie_id
+    group by title
+    order by rating desc, title asc
+    limit 1
+) t2
+</code></pre>
+<h1 id="1355活动参与者">1355.活动参与者</h1>
+<p>写一条 SQL 查询那些既没有最多，也没有最少参与者的活动的名字。注意名称相同 id 不同的参与者算作两个人。</p>
+<pre><code class="language-sql">select activity
+from
+(
+    select activity, num,
+    rank() over(order by num asc ) as rk1,
+    rank() over(order by num desc ) as rk2
+    from (
+        select activity, count(distinct id) as num
+        from Friends
+        group by activity
+    ) t1
+) t2
+where rk1&gt;1 and rk2&gt;1
+</code></pre>
+<h1 id="1364顾客的可信联系人数">1364.顾客的可信联系人数</h1>
+<p>为每张发票 invoice_id 编写一个SQL查询以查找以下内容：</p>
+<p>customer_name：与发票相关的顾客名称。<br>
+price：发票的价格。<br>
+contacts_cnt：该顾客的联系人数量。<br>
+trusted_contacts_cnt：可信联系人的数量：既是该顾客的联系人又是商店顾客的联系人数量（即：可信联系人的电子邮件存在于客户表中）。<br>
+将查询的结果按照 invoice_id 排序。</p>
+<pre><code class="language-sql">select t1.invoice_id,t3.customer_name,
+    t1.price as price, 
+    count(distinct t2.contact_email) as contacts_cnt,
+    ifnull(t4.trusted_contacts_cnt,0) as trusted_contacts_cnt
+from Invoices t1
+left join Contacts t2
+on t1.user_id = t2.user_id
+left join Customers t3
+on t3.customer_id = t1.user_id
+left join (
+    select Contacts.user_id, count(distinct Customers.customer_id) as trusted_contacts_cnt
+    from Contacts
+    inner join Customers
+    on Contacts.contact_name = Customers.customer_name
+    group by Contacts.user_id
+) t4
+on t4.user_id = t1.user_id
+group by t1.invoice_id
+</code></pre>
+<h1 id="1369-获取第二次的活动">1369. 获取第二次的活动</h1>
+<p>展示每一位用户 <strong>最近第二次</strong> 的活动，如果用户仅有一次活动，返回该活动</p>
+<pre><code class="language-sql">select username, activity,startDate,endDate
+from (
+    select *,
+        row_number() over(partition by username order by startDate desc) as rk1,
+        row_number() over(partition by username order by startDate asc) as rk2
+    from UserActivity
+) tmp
+where (rk1 = rk2 and rk1 = 1)  or rk1=2
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[XGBoost 原理与面试问题]]></title>
+        <id>https://yangggshuyi.github.io/post/xgboost-yuan-li-yu-mian-shi-wen-ti/</id>
+        <link href="https://yangggshuyi.github.io/post/xgboost-yuan-li-yu-mian-shi-wen-ti/">
+        </link>
+        <updated>2021-03-11T10:07:51.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="原理推导">原理推导：</h1>
+<figure data-type="image" tabindex="1"><img src="https://yangggshuyi.github.io/post-images/1615543724318.jpg" alt="" loading="lazy"></figure>
+<h1 id="xgboost常见面试题">xgboost常见面试题</h1>
+<h2 id="1boosting的思想">1.Boosting的思想</h2>
+<p>（直接讲adaboost）初始化训练一个弱学习器，每次依照训练结果调整样本权重，增大错分样本的权重并基于此训练下一个学习器，预测时串联各学习器的加权结果。</p>
+<h2 id="2xgboost和gbdt的区别">2.XGBoost和GBDT的区别：</h2>
+<ol>
+<li>
+<p>损失函数上：对于Loss部分是一阶还是二阶展开（二阶更准确）</p>
+</li>
+<li>
+<p>正则项上：XGBoost加上树模型复杂度的正则项</p>
+</li>
+<li>
+<p>特征选择上：</p>
+<ul>
+<li>
+<p>加入近似算法（不是遍历所有可能取值，而是有间隔的选取候选拆分点/分桶），默认tree_method = “auto”将在中小数据上沿用贪心算法，大数据集上使用近似算法。</p>
+</li>
+<li>
+<p>XGBoost引入随机森林在特征集合抽样的思想，帮助降低过拟合</p>
+</li>
+</ul>
+</li>
+<li>
+<p>基学习器上：gbdt 只能用cart算法的回归树，而xgboost 支持线性分类器 gblinear。</p>
+</li>
+<li>
+<p>缺失值处理上：XGBoost在训练时缺失值会被分到左子树和右子树，分别计算目标函数，对比选择较优的分配方式。</p>
+</li>
+<li>
+<p>计算速度上——pre_sorted预排序、分箱的近似算法、分布式计算等</p>
+</li>
+</ol>
+<h2 id="3xgboost-计算速度上的提升点">3.XGBoost 计算速度上的提升点</h2>
+<ol>
+<li>
+<p>决策树最耗时的步骤是对特征的值排序，XGBoost在迭代之前，先进行预排序，存为block结构，每次迭代重复使用该结构，降低计算，同时各个特征的增益计算可以<strong>开多线程进行</strong></p>
+<p>（这里也有一个考点，<strong>xgb 的并行和Rf不同，是在选择分割方式时，并行计算各个特征的最佳分割点，而不是并行构造tree</strong>，所有 boosting 算法都是additive training 无法并行构造tree）</p>
+</li>
+<li>
+<p>分箱 / 近似直方图算法，不是遍历所有可能取值，而是有间隔的选取候选拆分点/分桶，比如连续值直接取分位数。（LightGBM方法采用histogram算法，复杂度更低）</p>
+</li>
+</ol>
+<h2 id="4目标函数-mae-二阶不可导问题">4.目标函数 MAE 二阶不可导问题</h2>
+<p>有绝对值的目标函数 MAE MAPE 二阶不可导，主流方法是用利用可导函数逼近，比如MSE或者<strong>Pseudo-Huber loss function</strong>：</p>
+<figure data-type="image" tabindex="2"><img src="https://www.zhihu.com/equation?tex=L_%5Cdelta%28y_i%2C%5Ctilde%7By%7D_i%29%3D%5Cdelta%5E%7B2%7D%28%5Csqrt%7B1%2B%28%5Cfrac%7B%5Ctilde%7By%7D_i-y_i%7D%7B%5Cdelta%7D%29%5E%7B2%7D%7D-1%29" alt="[公式]" loading="lazy"></figure>
+<h2 id="5xgboost-如何调参">5.XGBoost 如何调参？</h2>
+<p><a href="https://xgboost.readthedocs.io/en/latest/parameter.html">所有参数介绍地址</a></p>
+<ul>
+<li>确定 eta（学习率）和 n_estimators（迭代次数=树的个数）</li>
+<li>再确定每棵树的基本信息，max_depth 和 min_child_weight（即节点大H值）</li>
+<li>再确定全局信息：比如最小分裂增益，采样参数（样本采样 subsample、特征采样colsample_bytree），正则参数（L1-alpha和L2-lambda）</li>
+<li>重新降低 eta（学习率），得到最优解</li>
+</ul>
+<h2 id="6xgboost-过拟合怎么办">6.XGBoost 过拟合怎么办？</h2>
+<ol>
+<li>
+<p>对树的剪枝：</p>
+<ul>
+<li>降低树的深度 max_depth</li>
+<li>增大 min_child_weight（即节点大H值）</li>
+<li>增大惩罚系数alpha和lambda</li>
+</ul>
+</li>
+<li>
+<p>subsample 力度变大，降低异常点影响</p>
+</li>
+<li>
+<p>减小 learning rate，提高 n_estimators</p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[因果推断基本概念]]></title>
+        <id>https://yangggshuyi.github.io/post/yin-guo-tui-duan-jian-jie/</id>
+        <link href="https://yangggshuyi.github.io/post/yin-guo-tui-duan-jian-jie/">
+        </link>
+        <updated>2021-03-06T04:28:02.000Z</updated>
+        <summary type="html"><![CDATA[<p>今日收获就是没有收获，跟风感谢日文和涛总的陪伴~</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>今日收获就是没有收获，跟风感谢日文和涛总的陪伴~</p>
+<!-- more -->
+<p>问题引入源自两方面：</p>
+<p>1.老板提问：</p>
+<blockquote>
+<p>为了对比ab两组流量的ctr差别，在给点显著性水平和期望误差1%内的条件下，可以计算出所需最小的样本量。随后根据流量顺序划分AB两组作为实验组和对照组。在该分组的基础上，评价使用核心指标变为gmv（每个人在周期内的总购买金额）。空跑4天，结果发现AB两组gmv差异已经存在，甚至有些时间区间上显著。如果仍坚持开始实验，如何通过数据分析的方法，说明最终结果差异显著是由于实验处理而不只是分组本身差异或者其他因素？</p>
+</blockquote>
+<p>2.面试问题：</p>
+<blockquote>
+<p>Simpson 悖论在第一次面字节时被问到了，当时懵了一会才意识过来~ Simpson 悖论（总体和部分表现出相反结论，比如<a href="https://baike.baidu.com/item/%E8%BE%9B%E6%99%AE%E6%A3%AE%E6%82%96%E8%AE%BA/4475862?fr=aladdin">男女录取率在总体和不同专业分层的结果之间矛盾</a>）本质上属于内生性问题（解释变量和误差项存在相关关系），常见的原因是遗漏变量（比如男女比例差异）。这说明，有时是无法从相关性推导出因果关系的。</p>
+</blockquote>
+<h1 id="1rubin-causal-model">1.Rubin Causal Model</h1>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>Z</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">Z_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 表示个体i是否接受处理，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>Y</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">Y_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>表示结果变量，则个体i的观测结果是：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>Y</mi><mi>i</mi></msub><mo>=</mo><msub><mi>Z</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>i</mi></msub><mo>(</mo><mn>1</mn><mo>)</mo><mo>+</mo><mo>(</mo><mn>1</mn><mo>−</mo><msub><mi>Z</mi><mi>i</mi></msub><mo>)</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>(</mo><mn>0</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">Y_i = Z_iY_i(1) +  (1-Z_i) Y_i(0)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span></span></span></span></span></p>
+<h2 id="11-causal-effect">1.1 Causal effect</h2>
+<ul>
+<li>
+<p><strong>不可观测的 个体因果作用 (ICE)</strong></p>
+<p>ICE: individual Causal effect，个体i的因果作用 causal effect :</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi><mi>C</mi><mi>E</mi><mo>=</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>(</mo><mn>1</mn><mo>)</mo><mo>−</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>(</mo><mn>0</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">ICE = Y_i(1) -Y_i(0)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span></span></span></span></span></p>
+<p>而实验中的个体要么接受处理，要么接受对照，我们只能观测<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>Y</mi><mi>i</mi></msub><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">Y_i(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 或者<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>Y</mi><mi>i</mi></msub><mo>(</mo><mn>0</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">Y_i(0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span></span></span></span>，便无法计算其因果作用，这是因果推断的基本问题。</p>
+</li>
+<li>
+<p><strong>可识别的 平均因果作用 (ACE)</strong></p>
+<p>ACE: average Causal effect， 定义为个体因果作用的期望：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>C</mi><mi>E</mi><mo>=</mo><mi>E</mi><mo>(</mo><mi>I</mi><mi>C</mi><mi>E</mi><mo>)</mo><mo>=</mo><mi>E</mi><mo>(</mo><mi>Y</mi><mn>1</mn><mi mathvariant="normal">−</mi><mi>Y</mi><mn>0</mn><mo>)</mo><mo>=</mo><mi>E</mi><mo>(</mo><msub><mi>Y</mi><mn>1</mn></msub><mo>)</mo><mo>−</mo><mi>E</mi><mo>(</mo><msub><mi>Y</mi><mn>0</mn></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">ACE = E(ICE) = E(Y1 −Y0) = E(Y_1) - E(Y_0) 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">1</span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>Y</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">Y_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>表示个体接受处理之后的潜在结果，其期望可以由<em>所有个体都接受处理的潜在结果的均值</em>来估计。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>Y</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">Y_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>同理。</p>
+</li>
+</ul>
+<p>但是在实际中，我们不可能让所有的个体都接受处理。我们分配实验组和对照组，而当 Z 做随机化的前提下有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>(</mo><msub><mi>Y</mi><mn>1</mn></msub><mo>)</mo><mo>=</mo><mi>E</mi><mo>(</mo><mi>Y</mi><mi mathvariant="normal">∣</mi><mi>Z</mi><mo>=</mo><mn>1</mn><mo>)</mo><mo separator="true">,</mo><mi>E</mi><mo>(</mo><msub><mi>Y</mi><mn>0</mn></msub><mo>)</mo><mo>=</mo><mi>E</mi><mo>(</mo><mi>Y</mi><mi mathvariant="normal">∣</mi><mi>Z</mi><mo>=</mo><mn>0</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">E(Y_1)  = E(Y|Z =1 ) ,E(Y_0)  = E(Y|Z = 0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span>。此时个体是否处理与潜在结果无关，总体的平均因果作用可识别（可识别表示因果作用可以用<strong>观测数据的分布唯一的表示</strong>）:</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>C</mi><mi>E</mi><mo>(</mo><mi mathvariant="normal">随</mi><mi mathvariant="normal">机</mi><mi mathvariant="normal">化</mi><mi mathvariant="normal">试</mi><mi mathvariant="normal">验</mi><mi mathvariant="normal">下</mi><mo>)</mo><mo>=</mo><mi>E</mi><mo>(</mo><mi>Y</mi><mi mathvariant="normal">∣</mi><mi>Z</mi><mo>=</mo><mn>1</mn><mo>)</mo><mi mathvariant="normal">−</mi><mi>E</mi><mo>(</mo><mi>Y</mi><mi mathvariant="normal">∣</mi><mi>Z</mi><mo>=</mo><mn>0</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">ACE  (随机化试验下) = E(Y |Z = 1) − E(Y |Z= 0)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord cjk_fallback">随</span><span class="mord cjk_fallback">机</span><span class="mord cjk_fallback">化</span><span class="mord cjk_fallback">试</span><span class="mord cjk_fallback">验</span><span class="mord cjk_fallback">下</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span></span></p>
+<h2 id="12-随机化试验的理想与现实">1.2 随机化试验的理想与现实</h2>
+<h3 id="理想可忽略的分配机制">理想：可忽略的分配机制</h3>
+<p>随机化试验对于平均因果作用的识别起着至关重要的作用。在有协变量的随机化试验中，平均因果作用是可识别的要求：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi><mi mathvariant="normal">⊥</mi><mrow><mi>Y</mi><mo>(</mo><mn>1</mn><mo>)</mo><mo separator="true">,</mo><mi>Y</mi><mo>(</mo><mn>0</mn><mo>)</mo></mrow><mi mathvariant="normal">∣</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">Z⊥{Y(1),Y(0)} | X
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mord">⊥</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span></span></p>
+<p>即给定协变量X 后，处理的分配机制是完全随机化的，这被叫做“可忽略性”。这里引出了因果推断问题最重要的一步，就是对对照组和实验组的平衡进行检测。</p>
+<h3 id="现实混杂偏倚">现实：混杂偏倚</h3>
+<p>当协变量的分布在处理组和对照组均衡时，则我们在协变量取值的每一层， 都能得到该层平均因果作用的相合估计。当协变量的分布在处理组和对照组均衡时，就会出现不同层结果不一致甚至截然相反的矛盾。为了消除协变量的分布在处理组与对照组之间的差异，最基础的方法就是：</p>
+<h2 id="13-matching-与-倾向得分">1.3 Matching  与 倾向得分</h2>
+<p>简单的想法就是从对照组中找到和处理组中比较“接近” 的个体进行匹配，这样得出的作用，可以近似平均因果作用，“接近”的标准是基于观测协变量的。如果观测协变量的维数较高，匹配就很难实现了。</p>
+<p>此时可以使用倾向得分匹配。倾向得分 ( propensity score ) 定义为条件概率:<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>(</mo><mi>Z</mi><mo>=</mo><mn>1</mn><mi mathvariant="normal">∣</mi><mi>X</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">p(Z = 1|X)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span>，不难看出可以用 logistic 回归算出倾向得分。随后可以根据它分层/加权，得到各层/总体加权平均因果效应的估计。</p>
+<p>这里，用一个性别协变量不平衡导致的<strong>辛普森悖论</strong>作为例子：</p>
+<figure data-type="image" tabindex="1"><img src="https://uploads.cosx.org/2012/03/simpson.png" alt="" loading="lazy"></figure>
+<pre><code>Y：结果变量，survive / die（则 E(Y) = P(Y=1) = survive rate ）
+Z：随机分组变量，treatment / control
+X：协变量，male / female
+--
+1.如果不考虑协变量性别的在分组中的不平衡问题，直接对男女总体进行估计：
+ACE = E(y|z=1) - E(y|z=0) =  p(y=1|z=1) - p(y=1|z=0) = 0.5-0.4 = 0.1
+-- 
+2.如果考虑分组不平衡，按照协变量性别进行加权调整：
+ACE = (p(y=1|z=1, x=1) - p(y=1|z=0, x=1))*p(x=1) + 
+			(p(y=1|z=1, x=0) - p(y=1|z=0, x=0))*p(x=0) 
+		= (0.6-0.7)*0.5 + (0.2-0.3)*0.5
+		= -0.1
+-- 
+是否根据性别进行调整，得到的结果完全相反
+</code></pre>
+<h1 id="2-因果图-causal-diagram">2. 因果图 (Causal Diagram)</h1>
+<h2 id="21-图模型基本概念">2.1 图模型基本概念</h2>
+<p>图模型的概念这部分在数据结构有所接触，<a href="http://localhost:4000/post/py1015-2/">这里回顾一下</a></p>
+<p>其中重点在于DAG（有向无环图）/图模型/贝叶斯网络</p>
+<figure data-type="image" tabindex="2"><img src="https://cloud.githubusercontent.com/assets/18478302/25562044/03151afa-2dad-11e7-94c8-c5826f17d063.png" alt="" loading="lazy"></figure>
+<p>在这张图中，x1...xj的联合分布可以根据全概率公式做如下的递归分解：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>(</mo><msub><mi>X</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>3</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>4</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>5</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>6</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>X</mi><mi>j</mi></msub><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><msub><mi>X</mi><mn>1</mn></msub><mo>)</mo><mo>(</mo><msub><mi>X</mi><mn>2</mn></msub><mo>)</mo><mi>P</mi><mo>(</mo><msub><mi>X</mi><mn>3</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>X</mi><mn>1</mn></msub><mo>)</mo><mi>P</mi><mo>(</mo><msub><mi>X</mi><mn>5</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>X</mi><mn>2</mn></msub><mo>)</mo><mi>P</mi><mo>(</mo><msub><mi>X</mi><mn>4</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>X</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>2</mn></msub><mo>)</mo><mi>P</mi><mo>(</mo><msub><mi>X</mi><mi mathvariant="normal">∣</mi></msub><msub><mi>X</mi><mn>3</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>4</mn></msub><mo>)</mo><mi>P</mi><mo>(</mo><msub><mi>X</mi><mn>6</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>X</mi><mi>i</mi></msub><mo>)</mo><mi>P</mi><mo>(</mo><msub><mi>X</mi><mi>j</mi></msub><mi mathvariant="normal">∣</mi><msub><mi>X</mi><mn>4</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>5</mn></msub><mo separator="true">,</mo><msub><mi>X</mi><mn>6</mn></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">P(X_1, X_2, X_3, X_4, X_5, X_6, X_i, X_j) = P(X_1)(X_2)P(X_3|X_1) P(X_5|X_2)P(X_4| X_1, X_2)P(X_|X_3, X_4)  P(X_6|X_i) P(X_j|X_4, X_5, X_6)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3551999999999999em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∣</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>【注意点】一个有向无环图唯一地决定了一个联合分布；反过来，一个联合分布不能唯一地决定有向无环图（因为乘法公式的不唯一）</p>
+<h2 id="22-结构方程模型">2.2 结构方程模型</h2>
+<p><strong>structural equation model: SEM</strong></p>
+<p>SEM 是因果图的先驱。具体来说结构方程模型和图模型之间的关系：</p>
+<ul>
+<li>原因Z——父节点，结果Y——子节点，间接原因X——Z的父节</li>
+<li>外生变量：根节点</li>
+<li>内生变量：子节点</li>
+<li>边：函数关系</li>
+</ul>
+<p>e.g. U = {X 教育程度，Y 经验}  ，  V = {Z 工资}</p>
+<p><strong>【注意点】因果关系&amp;统计相关性：互相都不能推出另一方</strong></p>
+<h2 id="23-v-structure">2.3 V structure</h2>
+<p>不同结构下，如何快速判断条件独立性</p>
+<ol>
+<li>
+<p><strong>链式结构</strong>（chain）</p>
+<p>X 和 Z之间通过Y相连——则给定Y时，Z和X独立。condition 在哪儿相当于切断此处和周围的所有的连接。可以利用这个来<strong>解释辛普森悖论</strong>：<br>
+<img src="https://yangggshuyi.github.io/post-images/1615037603717.jpg" alt="" loading="lazy"></p>
+<p>X是针对某一种疾病的药物，可以促进Y的恢复。具体来说，使用X可以帮助调节血压Z，从而促进Y的恢复<u>。但当我们控制/condition on Z时，相当于切断此处的所有连接</u>，只看X对Y的直接影响（副作用），结果则是抑制恢复。</p>
+</li>
+<li>
+<p><strong>叉状结构（fork）</strong></p>
+<p>X是的导致Y和Z的共同原因，Y 和 Z 是相关的——conditional在X上，Y和Z独立。可以利用这个来<strong>解释辛普森悖论</strong>：</p>
+</li>
+</ol>
+<p><img src="https://yangggshuyi.github.io/post-images/1615037607834.jpg" alt="" loading="lazy"><br>
+比如X：age，Y：exercie，Z：胆固醇含量。直接看Y和Z之间的关系，exercise 提高胆固醇含量增加。而加上 condition X 时，每个年龄段内 exercise 提高胆固醇含量降低。（why，年龄X对exercise Y 和 胆固醇含量 Z 都有影响，年龄增加exercise 增多，胆固醇也增多）</p>
+<p>另一个夸张的例子，穿着鞋睡觉和醒来头痛之间有强烈相关关系，而condition on 宿醉时，两者独立。</p>
+<ol start="3">
+<li>
+<p><strong>对撞结构（collider）</strong></p>
+<p>X 和 Y 是导致 Z 的共同原因。则 X 和 Y 独立，但当 <strong>condition 在 Z 或者 Z的后继节点上</strong>，则 原本独立的 X 和 Y 变为相关。</p>
+<p>比如智力和试题难度共同决定成绩高低，首先智力和难度是独立的，但当 condition 成绩时，两者出现相关。已知成绩低，如果智力高则说明试题难度高。已知成绩高，如果难度高说明智力也高。</p>
+</li>
+<li>
+<p><strong>d 分离 (d - separation)</strong></p>
+<p>定义（<strong>d 分离</strong>）: 设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span></span></span></span> 是 DAG 中不相交的节点集合，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span> 为一条连接 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span> 中某节点到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span> 中某节点的路径 （不管方向）。如果路径 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span> 上某节点满足如下的条件：</p>
+</li>
+</ol>
+<p>（1）在路径<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span> ，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span> 点处为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span></span></span></span> 结构 （或称冲撞点，collider），且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span> 及其后代不在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span></span></span></span> 中；</p>
+<p>（2）在路径 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span> 上，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span> 点处不是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span></span></span></span> 结构，且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span> 在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span></span></span></span> 中,</p>
+<p>那么称 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span></span></span></span> 阻断 (block) 了路径 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span></span>。进一步，如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span></span></span></span> 阻断了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span> 的所有路径，那么称 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span></span></span></span> <strong>d分离</strong> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span>，记为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>X</mi><mi mathvariant="normal">⊥</mi><mi>Y</mi><mi mathvariant="normal">∣</mi><mi>Z</mi><msub><mo>)</mo><mi>G</mi></msub></mrow><annotation encoding="application/x-tex">(X\bot Y|Z)_{G}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord">⊥</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">G</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。</p>
+<blockquote>
+<p>如何直观理解d分离？用一个例子：</p>
+</blockquote>
+<figure data-type="image" tabindex="3"><img src="https://yangggshuyi.github.io/post-images/1615037481472.jpg" alt="" loading="lazy"></figure>
+<pre><code>在这样的一个DAG中，观察到上方是 fork 结构，中间是 chain 结构，下方是 collider 结构。
+找到能够 block 从 T 到 Y 所有路径的方式如下：
+- M1 + W1/W2/W3（阻断fork&amp;chain, collider 不动，对于（2）的情况）
+- M1 + W1/W2/W3 + X2 + X1/X3（只有 X2 让下方的collider 父节点相关，加上X1或X3之后 T 和 Y 独立了。
+</code></pre>
+<h2 id="24-从dag到因果图">2.4 从DAG到因果图</h2>
+<h3 id="do-operator">do-operator</h3>
+<blockquote>
+<p>“干预” vs “条件”</p>
+</blockquote>
+<p>理解Do算子，从<strong>干预</strong>（intervening) 和<strong>条件</strong> (conditioning) 的概念关系来理解。两个概念非常非常接近，在图模型中都相当于切断某处的所有连接，并且将其取值看做常数。但是区别在于，当我们引入“因果”的概念后，<u><strong>当我们干预“结果”，并不会影响“原因”的分布，但是当 condition on “结果”的时候，“原因”的条件分布会改变</strong></u>。</p>
+<figure data-type="image" tabindex="4"><img src="https://cloud.githubusercontent.com/assets/18478302/25562057/8e81e640-2dad-11e7-8a97-c79ef34f169e.png" alt="" loading="lazy"></figure>
+<p>在上图的例子中，看条件和干预的区别：</p>
+<ul>
+<li>A.条件 p(X1|x2)
+<ul>
+<li>无论X1和X2的因果关系如何，p(X1|X2)不变</li>
+</ul>
+</li>
+<li>B.干预  p(X1|do(X2))
+<ul>
+<li>在（1）的情况下，X1是原因X2是结果，则p(X1|do(X2))  = p(X1)【上面划线句】</li>
+<li>在（2）的情况下，X1是结果X2是原因，则p(X1|do(X2))  = p(X1|X2)</li>
+</ul>
+</li>
+</ul>
+<h3 id="backdoor-frontdoor-criterion">backdoor / frontdoor criterion</h3>
+<p>。。。（没理解但是累了，so下周继续~</p>
+<p>参考资料：</p>
+<p><a href="https://www.bilibili.com/video/BV1nZ4y1K78i?p=1">爱可可老师在B站上推荐的因果推理导论课</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[哈佛大学幸福课笔记 （上）p1-p8]]></title>
+        <id>https://yangggshuyi.github.io/post/ha-fo-da-xue-xing-fu-ke-bi-ji-shang-p1-p8/</id>
+        <link href="https://yangggshuyi.github.io/post/ha-fo-da-xue-xing-fu-ke-bi-ji-shang-p1-p8/">
+        </link>
+        <updated>2021-03-05T16:04:01.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>热评: “兜兜转转这么多年，完美主义，过犹不及，all or nothing，归咎他人，这些“问题”戴上各式面具继续困扰着我。一失败就手足无措，一努力就急于求成，我几乎翻遍所有写焦虑，抑郁，消极的帖子，却总是鬼打墙一般地恶性循环。今年卡在人生转变的关口，越来越深刻地感受到积极主动的重要性，于是重新打开这门课，认认真真地从头看完。&quot;</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>热评: “兜兜转转这么多年，完美主义，过犹不及，all or nothing，归咎他人，这些“问题”戴上各式面具继续困扰着我。一失败就手足无措，一努力就急于求成，我几乎翻遍所有写焦虑，抑郁，消极的帖子，却总是鬼打墙一般地恶性循环。今年卡在人生转变的关口，越来越深刻地感受到积极主动的重要性，于是重新打开这门课，认认真真地从头看完。&quot;</p>
+</blockquote>
+<!-- more -->
+<h1 id="01-02-make-your-life-better">01-02 make your life better</h1>
+<p><em>No one is coming to make your life better for you. You're resposible for your life,for  your self-confidence, for your happiness.</em></p>
+<ul>
+<li>
+<p>我们现在的时间大多花在 time-out，花在look into yourself 的 time-in 太少了</p>
+</li>
+<li>
+<p>Question create reality：多问问自己积极问题，比如我的优点是什么（心理暗示）</p>
+</li>
+<li>
+<p>slightly happy if you lower my levels of expectation, but not in the long term.（对最近的我来说很重要）。财富、升职等等都 make very little difference.</p>
+</li>
+</ul>
+<h1 id="03-05-the-cause-of-unhappiness">03-05 the cause of unhappiness</h1>
+<ul>
+<li>
+<p>弗洛依德：“人们在舒适地麻木”。人类的适应性，但这种适应性带来的对美好事物的习以为常，让我们对事情麻木，这是负面的（想起王小波关于挑粪生活的那句话了）。我们如果对消极可适应，但对幸福的日常生活不习以为常。就好了。</p>
+</li>
+<li>
+<p>或许相信某件事能基于精神上慰藉和充实，但长期会产生愧疚感和沮丧感。</p>
+</li>
+<li>
+<p>只有正确的 expectation 才能让我们 happier 。错误的 expectation 比如：找到工作/理想伴侣，而 right expectation is to believe in change——相信事情会完美解决</p>
+</li>
+<li>
+<p>认为生活有意义。意义感从哪里来？Goal setting，role model，social support，courage of admit weakness。真正感觉幸福的人的 leading question: how can I make this world a better place?</p>
+</li>
+<li>
+<p>No.1 cause of unhappiness—people feel guilty about pursuing their own happiness. 怎么解决：the permission to be human: rejecting our nature leads to suboptimal performance. 比如，<strong>嫉妒是一种情感，我们 accept&amp;承认，但是不代表屈从这种想法</strong>，e.g. i can still experience envy toward my best friend, and choose to behave generously toward him.</p>
+</li>
+<li>
+<p>悲观和乐观区别不在于是否快乐，而是多快能从不快乐中恢复过来——积极主动地去处理这些情况。重点在于：more generous, more accepting of other people, more tolerant of other people as well as ourselves.</p>
+</li>
+<li>
+<p>具体来说，尝试<strong>一天内多做五件好事</strong>，每日冥想（今天1/1）</p>
+</li>
+</ul>
+<h1 id="06-08-learn-to-fail-or-fail-to-learn">06-08  learn to fail, or fail to learn</h1>
+<ul>
+<li>焦虑的成因便是意识到理想与现实的gap。解决焦虑：
+<ul>
+<li>要么改变理想，墙头草又如何</li>
+<li>要么改变现实：①改变主观对现实的认知：选择性看待现实，逃避总是比改变简单呢；②改变客观现实</li>
+</ul>
+</li>
+<li>人生的起伏改变的不过是暂时的幸福与自尊，那么怎样提升 base level happniess？幸福和什么关系最大？答案是自尊 self-concept is destiny.  <strong>怎样提升自尊？</strong>
+<ul>
+<li>【行动起来】<strong>解决而不是逃避问题，把自己置于风险之上</strong>，尝试那些重要的事情，自尊会螺旋式上升。why? ——Self-perception theory。多经历失败，成长的途径只有这一条。<em>learn to fail, or fail to learn</em></li>
+<li>【想象成功】大脑无法区别真实的事物和想象的事物，反复想象成功</li>
+<li>【认知疗法】避免放大，归纳过度</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>自我认知理论</strong>: 如果看到别人主动交流、发言、尝试，我会觉得他很自信有勇气，于是便会用同样的方式判断自己的自尊、宽容程度、豁达程度。比如自己也大胆主动交流，那么我也会认为”我一定很勇敢“。</p>
+</blockquote>
+<blockquote>
+<p><strong>归纳过度</strong>：他拒绝了我，因此大家都会拒绝我，把失败当做一次机遇、一个跳板，而是视之为世界末日，永远找不到工作，全有或全无。要么全是A，要么就是彻底的失败，阻止我们投入进去。它的另一面，同一个硬币的另一面，是极小化。</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[业务题 | 指标异动问题]]></title>
+        <id>https://yangggshuyi.github.io/post/ye-wu-or-zhi-biao-yi-dong-wen-ti/</id>
+        <link href="https://yangggshuyi.github.io/post/ye-wu-or-zhi-biao-yi-dong-wen-ti/">
+        </link>
+        <updated>2021-03-04T13:45:44.000Z</updated>
+        <summary type="html"><![CDATA[<p>常见问题：GMV\日活\转化率\客单价\用户流失率的变化原因分析。分析基本流程：明确问题——定位问题——原因假设——提出建议/数据支撑假设。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>常见问题：GMV\日活\转化率\客单价\用户流失率的变化原因分析。分析基本流程：明确问题——定位问题——原因假设——提出建议/数据支撑假设。</p>
+<!-- more -->
+<h1 id="基本流程">基本流程</h1>
+<p>明确问题——定位问题——原因假设和建议</p>
+<p>1.明确问题：确认数据真实性，是相对什么而言的下降</p>
+<p>2.定位问题：指标拆解+漏斗分析</p>
+<p>3.原因假设，内部（运营、开发）+外部（pest）</p>
+<p>4.提出建议：针对不同的原因假设</p>
+<h1 id="具体分析">具体分析</h1>
+<h2 id="单一类指标dau">单一类指标——DAU</h2>
+<p>DAU 下降，如何分析？直接套用上面的基本流程：</p>
+<h3 id="1明确问题">1.明确问题</h3>
+<p>确认数据真实性，计算bug；确认是相对什么而言的下降（横比还是总比？）</p>
+<ul>
+<li>环比数据：平稳下降还是骤跌？排查突发性事件还是累积性事件。</li>
+<li>近年同比数据：是否有同级别的下降？排查是否收到周期性、节日、重大赛事的分析</li>
+</ul>
+<h3 id="2定位问题">2.定位问题</h3>
+<p>指标拆解定位问题，越细越好——定位具体群体</p>
+<p>常见分析顺序：新 or 老用户，用户来源渠道（质量，定位问题，帮助分析各个渠道投放ROI，从而改变渠道投放比例或者内容），登录入口（手机端和pc段），机型（不同档次的机型，用户质量不同）等等。具体可以计算指标变化率。</p>
+<ul>
+<li>用户分群
+<ul>
+<li>基本：新老用户、渠道、机型、登录入口</li>
+<li>画像：男女、地区、职业等等</li>
+</ul>
+</li>
+<li>访问时段</li>
+</ul>
+<h3 id="3原因假设">3.原因假设</h3>
+<p>提出原因假设，为什么会出现问题。</p>
+<ul>
+<li>内部原因
+<ul>
+<li>产品：功能变动、推荐策略调整、UI设计改动</li>
+<li>开发：bug？耗电，加载过慢</li>
+<li>运营：推送活动，推广效果不佳</li>
+</ul>
+</li>
+<li>外部原因：
+<ul>
+<li>时间因素，比如开学或者假期</li>
+<li>政府政策、社会事件（舆论）</li>
+<li>市场价格、竞品</li>
+</ul>
+</li>
+</ul>
+<h3 id="4提出建议">4.提出建议</h3>
+<ul>
+<li>比如某渠道用户转化率/留存低，考虑ROI，减少渠道投放或者修改投放内容。</li>
+<li>用户体验不佳，更新版本，进行abtest</li>
+<li>老用户流失，调查问卷进一步优化+挽回</li>
+</ul>
+<p>（当然，这是比较模板式的解答，面试官可能会觉得没有亮点~</p>
+<h2 id="复合类指标gmv">复合类指标——GMV</h2>
+<p>GMV 下降，如何拆解分析？</p>
+<p><strong>gmv = 访客数 * 转化率 * 订单均价</strong></p>
+<p>进行<strong>指标拆解</strong>，随后按照单一指标分析，拆解为以下三个指标：</p>
+<ol>
+<li>
+<p>访客数：分析同单一指标，定位具体用户群体问题</p>
+</li>
+<li>
+<p>转化率：<strong>漏斗分析</strong></p>
+<ul>
+<li>
+<p>用户从点开APP到最终完成购买的过程中经历了那些步骤，分析每个子环节所产生的用户流失率，从而定位到具体子环节的功能或者界面等问题。</p>
+</li>
+<li>
+<p>比如拆解为：广告点击、商品浏览、放入购物车、交易成功，检查每一步转化率是否有显著变化。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>订单均价：考虑政府政策，市场价格等外部因素</p>
+</li>
+</ol>
+<h1 id="真题思路">真题思路</h1>
+<ol>
+<li>抖音日活下降20%，如何分析？</li>
+</ol>
+<p>（1）20% 过大，暗示需要确定数据的准确性。（2）问题拆解，从用户、产品、运营、内容四个角度进行了分析，然后继续细分各个维度，在用户角度可以拆分处不同入口、不同时间段等指标，对这些指标进行详细的计算和分析，我们便知道是否其影响了日活的变化。外部因素主要从竞品，政策，社会环境三个方面进行了拆分，比如某国下架抖音APP。（3）做出假设+解决，比如①发现新用户下降多，按照渠道划分，如果发现某渠道有问题，分析是流量还是转化率低，从而定制渠道优化策略；②近期有重要产品迭代，abtest的结果表现如何。</p>
+<ol start="2">
+<li>每年夏天北京的滴滴呼叫量增加，为什么？</li>
+</ol>
+<p>（1）明确问题，夏天北京呼叫量增加是针对春天，还是针对上海。（2）进行问题定位（套路）。（3）原因假设，<strong>由于是每年夏天都增加，强调周期季节因素</strong>，如果分析内部原因或者突发事件显得强行。题目“夏天”暗示明显，可以分析暑期旅游人数增加，或者夏季雨天增加。（4）这里由于是增加，不需要分析改进建议，转而可以给出假设的数据支撑，比如分析原因认为：①“暑期旅游人数增加导致的”——给出用户数变化+政府游客数据；②“夏季雨天增加导致的”——给出夏季雨天数量+雨天和晴天打车人数对比，</p>
+<ol start="3">
+<li>618后拼多多成交量下降，分析原因并说明需要用哪些数据作支撑、、、</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ sql 概念理解题]]></title>
+        <id>https://yangggshuyi.github.io/post/sql-li-jie-lei-mian-shi-ti/</id>
+        <link href="https://yangggshuyi.github.io/post/sql-li-jie-lei-mian-shi-ti/">
+        </link>
+        <updated>2021-03-03T09:50:56.000Z</updated>
+        <summary type="html"><![CDATA[<p>sql必背问题 ：各种 join 的区别，执行顺序，on 和 where  having 的区别，笛卡尔积与效率。附近期我和花花的两场面试真题。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>sql必背问题 ：各种 join 的区别，执行顺序，on 和 where  having 的区别，笛卡尔积与效率。附近期我和花花的两场面试真题。</p>
+<!-- more -->
+<h1 id="sql">sql</h1>
+<h2 id="1各种-join-的区别">1.各种 join 的区别</h2>
+<ul>
+<li>
+<p>inner join：返回两个表中具有匹配值的记录</p>
+</li>
+<li>
+<p>left (outer) join：返回左表中的所有记录以及右表中的匹配记录</p>
+</li>
+<li>
+<p>right (outer) join：从右表返回所有记录，并从左表返回匹配的记录</p>
+</li>
+<li>
+<p>Full (outer) join：当左表或右表中存在匹配项时，返回所有记录</p>
+</li>
+<li>
+<p>cross join：结果是笛卡尔积</p>
+</li>
+</ul>
+<h2 id="2执行顺序">2.执行顺序</h2>
+<pre><code class="language-sql">(5)SELECT DISTINCT TOP(&lt;top_specification&gt;) &lt;select_list&gt;                     
+(1)FROM &lt;left_table&gt; &lt;join_type&gt; JOIN &lt;right_table&gt; ON &lt;on_predicate&gt;
+(2)WHERE &lt;where_predicate&gt;
+(3)GROUP BY &lt;group_by_specification&gt;
+(4)HAVING &lt;having_predicate&gt;
+(6)ORDER BY &lt;order_by_list&gt;
+</code></pre>
+<ul>
+<li>FROM ：不论是什么join，先求笛卡尔积，生成虚拟表VT1-J1</li>
+<li>ON：对VT1-J1根据ON子句进行筛选，插入到VT1-J2</li>
+<li>JOIN：如果是outer join，要将中没有找到匹配的行，作为外部行添加进VT1-J2生成VT1-J3。</li>
+<li>WHERE：对得到的VT1进行行筛选，插入到VT2</li>
+<li>GROUP BY：将VT2中的行进行分组，生成VT3</li>
+<li>AVG/SUM/MEAN</li>
+<li>HAVING：对VT3的分组进行筛选，并将符合条件的组插入到VT4中。</li>
+<li>SELECT</li>
+<li>DISTINCT</li>
+<li>ORDER BY</li>
+<li>LIMIT, OFFSET</li>
+</ul>
+<p>这里引出2个细节，比如计算班里女生的平均成绩，</p>
+<ol>
+<li>
+<p><strong>where 和 having 的区别</strong>：求女生平均成绩，用 where 过滤掉男生因为其执行在求mean之前。</p>
+</li>
+<li>
+<p>**having 是在 select  之前执行的步骤，不可以引用别名。**比如select mean(gpa) as &quot;平均成绩&quot;from... + having mean(gpa)&gt;3.5 。同理 order by 可以引用别名。</p>
+</li>
+</ol>
+<h2 id="3on-和-where-的区别">3.on 和 where 的区别</h2>
+<ol>
+<li>
+<p>执行上的区别，见上一题。</p>
+<p>首先两个表做一个笛卡尔积，on后面的条件对该笛卡尔积做过滤形成临时表，如果没有where就直接返回结果，如果有where就对上一步的临时表再进行过滤。</p>
+</li>
+<li>
+<p>执行顺序差异导致的结果就是，条件放在 on/where <strong>返回结果集可能不一致</strong>，具体来说：</p>
+<ul>
+<li>
+<p>在inner join 时，条件放在on中和where中，返回的结果集是相同的。</p>
+</li>
+<li>
+<p>但在left/right/full join时，返回的结果集可能不同。比如 left join 筛选条件为右表的某列取值，①使用on时无论左边表取值多少，左边表中的所有记录都会返回；②where是在求出笛卡尔积之后筛选，这时已经没有left join的含义，即使来自左边的记录在不满足条件时也会被筛掉，<a href="https://www.cnblogs.com/Jessy/p/3525419.html">具体例子见这里</a>。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="4笛卡尔积及其解决">4.笛卡尔积及其解决</h2>
+<p>笛卡尔积，即集合A中元素和集合B中元素相结合的所有可能性，两张表的数据量都比较大的话，笛卡尔积会占用很大的内存空间。</p>
+<pre><code class="language-sql">select ... from table1 cross join table2;
+select ... from table1, table2; --当join不用on条件时，就会返回笛卡尔积。
+</code></pre>
+<p>延伸问题，如何避免出现庞大冗余的数据。当表与表之间的关联不是一对一的，由于笛卡尔积的乘法关系，会导致sql效率大大降低。比如使用包含大量重复值的 id 列作为on的条件——如何解决，先select distinct再join，比如有复合主键要用全。</p>
+<p>（待补充）</p>
+<h3 id="附录-完整面试题目">附录-完整面试题目</h3>
+<p>【京东健康-数据科学】</p>
+<ol>
+<li>sql 各种join, left join 和 left outer join</li>
+<li>执行顺序 from on where group by having</li>
+<li>on和where的区别</li>
+<li>窗口函数应用题，简单</li>
+<li>是否用过spark / hive</li>
+<li>什么时候出现笛卡尔积，怎么避免</li>
+<li>机器学习原理：决策树的分割思想，常见损失函数，gbdt xgb区别 gbdt rf区别，梯度消失及其解决</li>
+<li>10个箱子放苹果，1~1000任给一个数都能找到k个箱子苹果数之和对应，怎么放？（二进制）</li>
+</ol>
+<p>【罗森-数据分析】</p>
+<ol>
+<li>业务题：一个公司要发行一款低糖的运动饮料 ，问需要考虑哪些因素</li>
+<li>低糖的运动饮料在哪里更好卖</li>
+<li>你的优势是什么？</li>
+<li>数据分析最重要的是什么</li>
+<li>你理解的数据分析是干嘛的</li>
+<li>各种 join 的区别</li>
+<li>执行的一般逻辑</li>
+</ol>
+]]></content>
+    </entry>
+</feed>
