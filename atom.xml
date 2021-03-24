@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yangggshuyi.github.io</id>
     <title>薅羊毛记录仪</title>
-    <updated>2021-03-16T14:31:58.622Z</updated>
+    <updated>2021-03-24T02:04:45.408Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yangggshuyi.github.io"/>
     <link rel="self" href="https://yangggshuyi.github.io/atom.xml"/>
@@ -10,6 +10,26 @@
     <logo>https://yangggshuyi.github.io/images/avatar.png</logo>
     <icon>https://yangggshuyi.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 薅羊毛记录仪</rights>
+    <entry>
+        <title type="html"><![CDATA[几句废话]]></title>
+        <id>https://yangggshuyi.github.io/post/ji-ju-fei-hua/</id>
+        <link href="https://yangggshuyi.github.io/post/ji-ju-fei-hua/">
+        </link>
+        <updated>2021-03-24T01:54:59.000Z</updated>
+        <summary type="html"><![CDATA[<p>面腾讯面出了恋爱的心得，以为喜欢上却开始疏远接着又接近。果然，无论是恋爱还是面试，我都表现出应接不暇，捉襟见肘。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>面腾讯面出了恋爱的心得，以为喜欢上却开始疏远接着又接近。果然，无论是恋爱还是面试，我都表现出应接不暇，捉襟见肘。</p>
+<!-- more -->
+<p>退步的开始</p>
+<p>自我感觉良好，是退步的开始吗？答：不一定在退步，但一定没在进步呢</p>
+<p>忘乎所以</p>
+<p>即使最高明的人也很容易自高自大：给他某些特权，他就忘乎所以，声称这些是他不可剥夺的权利；予他少许权威，他就变成暴君。给傻瓜一套制服，上面缝一两个标签，他就以为自己的话即是法律</p>
+<p>求安慰</p>
+<p>7天5面+github崩溃，可我怎么跟着一起崩溃了。每天四处求安慰，这一点好像真的很讨厌。</p>
+<p>期待</p>
+<p>靠着那些对明天的期待，畅想未来，也让我想要继续生活下去</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[腾讯数分面经问题汇总（更新中）]]></title>
         <id>https://yangggshuyi.github.io/post/teng-xun-shu-fen-mian-jing-wen-ti-hui-zong-geng-xin-zhong/</id>
@@ -1858,114 +1878,6 @@ ACE = (p(y=1|z=1, x=1) - p(y=1|z=0, x=1))*p(x=1) +
 <p>（1）明确问题，夏天北京呼叫量增加是针对春天，还是针对上海。（2）进行问题定位（套路）。（3）原因假设，<strong>由于是每年夏天都增加，强调周期季节因素</strong>，如果分析内部原因或者突发事件显得强行。题目“夏天”暗示明显，可以分析暑期旅游人数增加，或者夏季雨天增加。（4）这里由于是增加，不需要分析改进建议，转而可以给出假设的数据支撑，比如分析原因认为：①“暑期旅游人数增加导致的”——给出用户数变化+政府游客数据；②“夏季雨天增加导致的”——给出夏季雨天数量+雨天和晴天打车人数对比，</p>
 <ol start="3">
 <li>618后拼多多成交量下降，分析原因并说明需要用哪些数据作支撑、、、</li>
-</ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ sql 概念理解题]]></title>
-        <id>https://yangggshuyi.github.io/post/sql-li-jie-lei-mian-shi-ti/</id>
-        <link href="https://yangggshuyi.github.io/post/sql-li-jie-lei-mian-shi-ti/">
-        </link>
-        <updated>2021-03-03T09:50:56.000Z</updated>
-        <summary type="html"><![CDATA[<p>sql必背问题 ：各种 join 的区别，执行顺序，on 和 where  having 的区别，笛卡尔积与效率。附近期我和花花的两场面试真题。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>sql必背问题 ：各种 join 的区别，执行顺序，on 和 where  having 的区别，笛卡尔积与效率。附近期我和花花的两场面试真题。</p>
-<!-- more -->
-<h1 id="sql">sql</h1>
-<h2 id="1各种-join-的区别">1.各种 join 的区别</h2>
-<ul>
-<li>
-<p>inner join：返回两个表中具有匹配值的记录</p>
-</li>
-<li>
-<p>left (outer) join：返回左表中的所有记录以及右表中的匹配记录</p>
-</li>
-<li>
-<p>right (outer) join：从右表返回所有记录，并从左表返回匹配的记录</p>
-</li>
-<li>
-<p>Full (outer) join：当左表或右表中存在匹配项时，返回所有记录</p>
-</li>
-<li>
-<p>cross join：结果是笛卡尔积</p>
-</li>
-</ul>
-<h2 id="2执行顺序">2.执行顺序</h2>
-<pre><code class="language-sql">(5)SELECT DISTINCT TOP(&lt;top_specification&gt;) &lt;select_list&gt;                     
-(1)FROM &lt;left_table&gt; &lt;join_type&gt; JOIN &lt;right_table&gt; ON &lt;on_predicate&gt;
-(2)WHERE &lt;where_predicate&gt;
-(3)GROUP BY &lt;group_by_specification&gt;
-(4)HAVING &lt;having_predicate&gt;
-(6)ORDER BY &lt;order_by_list&gt;
-</code></pre>
-<ul>
-<li>FROM ：不论是什么join，先求笛卡尔积，生成虚拟表VT1-J1</li>
-<li>ON：对VT1-J1根据ON子句进行筛选，插入到VT1-J2</li>
-<li>JOIN：如果是outer join，要将中没有找到匹配的行，作为外部行添加进VT1-J2生成VT1-J3。</li>
-<li>WHERE：对得到的VT1进行行筛选，插入到VT2</li>
-<li>GROUP BY：将VT2中的行进行分组，生成VT3</li>
-<li>AVG/SUM/MEAN</li>
-<li>HAVING：对VT3的分组进行筛选，并将符合条件的组插入到VT4中。</li>
-<li>SELECT</li>
-<li>DISTINCT</li>
-<li>ORDER BY</li>
-<li>LIMIT, OFFSET</li>
-</ul>
-<p>这里引出2个细节，比如计算班里女生的平均成绩，</p>
-<ol>
-<li>
-<p><strong>where 和 having 的区别</strong>：求女生平均成绩，用 where 过滤掉男生因为其执行在求mean之前。</p>
-</li>
-<li>
-<p>**having 是在 select  之前执行的步骤，不可以引用别名。**比如select mean(gpa) as &quot;平均成绩&quot;from... + having mean(gpa)&gt;3.5 。同理 order by 可以引用别名。</p>
-</li>
-</ol>
-<h2 id="3on-和-where-的区别">3.on 和 where 的区别</h2>
-<ol>
-<li>
-<p>执行上的区别，见上一题。</p>
-<p>首先两个表做一个笛卡尔积，on后面的条件对该笛卡尔积做过滤形成临时表，如果没有where就直接返回结果，如果有where就对上一步的临时表再进行过滤。</p>
-</li>
-<li>
-<p>执行顺序差异导致的结果就是，条件放在 on/where <strong>返回结果集可能不一致</strong>，具体来说：</p>
-<ul>
-<li>
-<p>在inner join 时，条件放在on中和where中，返回的结果集是相同的。</p>
-</li>
-<li>
-<p>但在left/right/full join时，返回的结果集可能不同。比如 left join 筛选条件为右表的某列取值，①使用on时无论左边表取值多少，左边表中的所有记录都会返回；②where是在求出笛卡尔积之后筛选，这时已经没有left join的含义，即使来自左边的记录在不满足条件时也会被筛掉，<a href="https://www.cnblogs.com/Jessy/p/3525419.html">具体例子见这里</a>。</p>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="4笛卡尔积及其解决">4.笛卡尔积及其解决</h2>
-<p>笛卡尔积，即集合A中元素和集合B中元素相结合的所有可能性，两张表的数据量都比较大的话，笛卡尔积会占用很大的内存空间。</p>
-<pre><code class="language-sql">select ... from table1 cross join table2;
-select ... from table1, table2; --当join不用on条件时，就会返回笛卡尔积。
-</code></pre>
-<p>延伸问题，如何避免出现庞大冗余的数据。当表与表之间的关联不是一对一的，由于笛卡尔积的乘法关系，会导致sql效率大大降低。比如使用包含大量重复值的 id 列作为on的条件——如何解决，先select distinct再join，比如有复合主键要用全。</p>
-<p>（待补充）</p>
-<h3 id="附录-完整面试题目">附录-完整面试题目</h3>
-<p>【京东健康-数据科学】</p>
-<ol>
-<li>sql 各种join, left join 和 left outer join</li>
-<li>执行顺序 from on where group by having</li>
-<li>on和where的区别</li>
-<li>窗口函数应用题，简单</li>
-<li>是否用过spark / hive</li>
-<li>什么时候出现笛卡尔积，怎么避免</li>
-<li>机器学习原理：决策树的分割思想，常见损失函数，gbdt xgb区别 gbdt rf区别，梯度消失及其解决</li>
-<li>10个箱子放苹果，1~1000任给一个数都能找到k个箱子苹果数之和对应，怎么放？（二进制）</li>
-</ol>
-<p>【罗森-数据分析】</p>
-<ol>
-<li>业务题：一个公司要发行一款低糖的运动饮料 ，问需要考虑哪些因素</li>
-<li>低糖的运动饮料在哪里更好卖</li>
-<li>你的优势是什么？</li>
-<li>数据分析最重要的是什么</li>
-<li>你理解的数据分析是干嘛的</li>
-<li>各种 join 的区别</li>
-<li>执行的一般逻辑</li>
 </ol>
 ]]></content>
     </entry>
